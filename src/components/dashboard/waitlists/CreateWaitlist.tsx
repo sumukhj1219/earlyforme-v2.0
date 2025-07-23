@@ -14,6 +14,7 @@ import { Label } from "~/components/ui/label"
 import { useWaitlist } from "~/contexts/WaitlistContext"
 import type { Template } from "~/types/template"
 import { tailwindBgColors } from "~/utils/colors"
+import WaitlistNameInput from "./WaitlistNameInput"
 
 type Props = {
   viewMode: "Both" | "Form" | "Preview"
@@ -57,6 +58,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
             </div>
 
             <div className="flex flex-col w-full">
+              <WaitlistNameInput />
               <Label className="text-xs">Change Background</Label>
               <div className="flex  sm:items-center gap-2 mt-2">
                 <span

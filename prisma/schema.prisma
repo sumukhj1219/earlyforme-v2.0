@@ -85,7 +85,7 @@ model Waitlist {
     badgeColor      String?
     badgeSize       String?
 
-    waitlistName  String?
+    waitlistName  String?    @unique
     waitlistColor String?
     waitlistSize  String?
 
