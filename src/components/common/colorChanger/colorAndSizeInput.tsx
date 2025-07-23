@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "~/components/ui/select"
 import { tailwindTextColors } from "~/utils/colors";
+import type { Template } from "~/types/template";
 
 type Props = {
   colorKey: keyof WaitlistDetails;
@@ -17,7 +18,7 @@ type Props = {
 };
 
 export function ColorAndSizeInput({ colorKey, sizeKey }: Props) {
-  const { waitlistDetails, setWaitlistDetails } = useWaitlist();
+  const { waitlistDetails, setWaitlistDetails, template, setTemplate } = useWaitlist();
 
   return (
     <div className="flex items-center mt-1 gap-2 justify-center">
@@ -28,12 +29,17 @@ export function ColorAndSizeInput({ colorKey, sizeKey }: Props) {
       />
 
       <Select
-        value={waitlistDetails?.[sizeKey] || ""}
-        onValueChange={(val) =>
+        value={waitlistDetails?.[sizeKey] || template?.[sizeKey] || ""}
+        onValueChange={(val) => {
           setWaitlistDetails((prev) => ({
             ...prev,
             [sizeKey]: val,
+          }));
+          setTemplate((prev)=>({
+            ...prev as Template,
+            [sizeKey]:val
           }))
+        }
         }
       >
         <SelectTrigger className="w-[100px]">
@@ -46,7 +52,6 @@ export function ColorAndSizeInput({ colorKey, sizeKey }: Props) {
           <SelectItem value="text-md">Medium</SelectItem>
           <SelectItem value="text-lg">Large</SelectItem>
           <SelectItem value="text-xl">XL</SelectItem>
-          <SelectItem value="text-2xl">2XL</SelectItem>
           <SelectItem value="text-2xl">2XL</SelectItem>
           <SelectItem value="text-3xl">3XL</SelectItem>
           <SelectItem value="text-4xl">4XL</SelectItem>

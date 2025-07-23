@@ -20,8 +20,8 @@ import {
 } from "~/components/ui/popover"
 import Tailwind from "../svg/tailwind"
 import { useWaitlist } from "~/contexts/WaitlistContext"
-import { tailwindColors } from "~/utils/colors"
 import type { WaitlistDetails } from "~/types/waitlist"
+import type { Template } from "~/types/template"
 
 export function ColorChanger({
   preset,
@@ -32,7 +32,7 @@ export function ColorChanger({
 }) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
-  const { setWaitlistDetails } = useWaitlist()
+  const { setWaitlistDetails, setTemplate } = useWaitlist()
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -46,7 +46,7 @@ export function ColorChanger({
           <Tailwind />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0 max-h-[300px] overflow-y-auto">
+      <PopoverContent className="w-[300px] p-0 max-h-[300px] ">
         <Command>
           <CommandInput placeholder="Search colors..." className="h-9" />
           <CommandList>
@@ -62,7 +62,11 @@ export function ColorChanger({
                     setWaitlistDetails((prev) => ({
                       ...prev,
                       [type]: selected
-                    }))
+                    }));
+                    setTemplate((prev)=>({
+                      ...prev as Template,
+                      [type]: selected
+                    }));
                     setOpen(false)
                   }}
                 >

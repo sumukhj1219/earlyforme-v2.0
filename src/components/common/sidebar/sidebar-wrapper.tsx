@@ -24,6 +24,7 @@ import type { ViewMode } from "~/types/viewMode"
 import { Button } from "~/components/ui/button"
 import { GlobeIcon, Layers } from "lucide-react"
 import TemplateTrigger from "~/components/template/TemplateTrigger"
+import Publish from "../publish/publish"
 
 type Props = {
     children: React.ReactNode,
@@ -33,7 +34,6 @@ type Props = {
 
 export default function SidebarWrapper({ children, viewMode, setViewMode }: Props) {
     const title = usePage()
-
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -63,14 +63,14 @@ export default function SidebarWrapper({ children, viewMode, setViewMode }: Prop
 
                 <div className="flex flex-1 flex-col gap-4 ">
                     <div className="p-2 border-b flex items-start justify-between">
-                        <Button size={'sm'} className="text-xs rounded flex items-center justify-center gap-x-1">Publish <GlobeIcon className="w-2 h-2" stroke="white" /></Button>
+                        <Publish />
                         <div className="flex items-center justify-center gap-x-2">
                             <TogglePreview viewMode={viewMode} setViewMode={setViewMode} />
                             <TemplateTrigger />
                         </div>
                     </div>
                     <div className="grid auto-rows-min ">
-                        <div className={`${viewMode === "Both" ? "grid md:grid-cols-2" : "flex flex-col"}`}>
+                        <div className={`${viewMode === "Both" ? "grid md:grid-cols-2 gap-x-2" : "flex flex-col"}`}>
                             {children}
                         </div>
                     </div>

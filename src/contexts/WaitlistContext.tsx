@@ -6,7 +6,7 @@ import { type WaitlistDetails } from "~/types/waitlist";
 
 export type WaitlistContextType = {
   waitlistDetails?: WaitlistDetails;
-  setWaitlistDetails: React.Dispatch<React.SetStateAction<WaitlistDetails | undefined>>;
+  setWaitlistDetails: React.Dispatch<React.SetStateAction<WaitlistDetails | undefined>>; 
   template?:Template;
   setTemplate:React.Dispatch<React.SetStateAction<Template | undefined>>;
 };

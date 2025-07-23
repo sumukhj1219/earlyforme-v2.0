@@ -7,6 +7,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "~/components/ui/sidebar"
+import { usePage } from "~/hooks/use-page"
 
 export function NavMain({
   items,
@@ -23,6 +24,7 @@ export function NavMain({
     }[]
   }[]
 }) {
+  const title = usePage()
   return (
     <SidebarGroup>
       <SidebarMenu>
@@ -39,7 +41,7 @@ export function NavMain({
             {item.items?.map((subItem) => (
               <SidebarMenuItem key={subItem.title} className="ml-6">
                 <a href={subItem.url} className="w-full">
-                  <SidebarMenuButton className="w-full text-xs hover:text-primary hover:bg-background transition flex items-center gap-2">
+                  <SidebarMenuButton className={`w-full text-xs hover:text-primary ${subItem.url.split('/')[1] === title.toLowerCase() ? 'bg-background text-primary':""} transition flex items-center gap-2`}>
                     {subItem.icon && (
                       <subItem.icon
                         className="w-6 h-6 rounded-sm p-0.5 bg-secondary/10 transition bg-gradient-to-br from-primary to-primary/50"

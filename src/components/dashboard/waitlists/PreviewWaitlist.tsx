@@ -9,7 +9,7 @@ const PreviewWaitlist = () => {
   const TemplateComponent = template?.component
 
   return (
-    <div className='p-0 border-8 border-secondary-foreground h-full'>
+    <div className=' h-full'>
       {TemplateComponent ? <TemplateComponent /> : <LookForTemplate />}
     </div>
   )

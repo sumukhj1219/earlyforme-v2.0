@@ -10,7 +10,7 @@ datasource db {
     // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#String?
     url      = env("DATABASE_URL")
 }
 
@@ -55,14 +55,15 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String     @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    Waitlists     Waitlist[]
 }
 
 model VerificationToken {
@@ -71,4 +72,36 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Waitlist {
+    id              String  @id @default(uuid())
+    waitlistUrl     String?  @unique
+    templateId      Int     @unique
+    href            String
+    waitlistLogo    String?
+    backgroundColor String?
+    badge           String?
+    badgeColor      String?
+    badgeSize       String?
+
+    waitlistName  String?
+    waitlistColor String?
+    waitlistSize  String?
+
+    header      String?
+    headerColor String?
+    headerSize  String?
+
+    subHeader      String?
+    subHeaderColor String?
+    subHeaderSize  String?
+
+    buttonPlaceholder String?
+    buttonBackground  String?
+
+    video String?
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
 }
