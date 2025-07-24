@@ -1,12 +1,18 @@
-import React from 'react'
-import Dashboard from '~/components/dashboard/waitlists/Dashboard'
+'use client';
 
-const page = () => {
+import { useViewMode } from '~/contexts/ViewModeContext';
+import CreateWaitlist from '~/components/dashboard/waitlists/CreateWaitlist';
+import PreviewWaitlist from '~/components/dashboard/waitlists/PreviewWaitlist';
+
+const DashboardPage = () => {
+  const { viewMode } = useViewMode();
+
   return (
-    <div>
-      <Dashboard />
-    </div>
-  )
-}
+    <>
+      {viewMode !== "Preview" && <CreateWaitlist viewMode={viewMode} />}
+      {viewMode !== "Form" && <PreviewWaitlist />}
+    </>
+  );
+};
 
-export default page
+export default DashboardPage;

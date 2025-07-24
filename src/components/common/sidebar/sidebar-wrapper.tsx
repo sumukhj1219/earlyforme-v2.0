@@ -25,15 +25,13 @@ import { Button } from "~/components/ui/button"
 import { GlobeIcon, Layers } from "lucide-react"
 import TemplateTrigger from "~/components/template/TemplateTrigger"
 import Publish from "../publish/publish"
+import { useViewMode } from "~/contexts/ViewModeContext"
 
-type Props = {
-    children: React.ReactNode,
-    viewMode: ViewMode,
-    setViewMode: (mode: ViewMode) => void
-}
 
-export default function SidebarWrapper({ children, viewMode, setViewMode }: Props) {
+
+export default function SidebarWrapper({ children }: { children: React.ReactNode }) {
     const title = usePage()
+    const { viewMode, setViewMode } = useViewMode()
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -61,14 +59,16 @@ export default function SidebarWrapper({ children, viewMode, setViewMode }: Prop
                     </div>
                 </header>
 
-                <div className="flex flex-1 flex-col gap-4 ">
-                    <div className="p-2 border-b flex items-start justify-between">
-                        <Publish />
-                        <div className="flex items-center justify-center gap-x-2">
-                            <TogglePreview viewMode={viewMode} setViewMode={setViewMode} />
-                            <TemplateTrigger />
-                        </div>
-                    </div>
+                <div className="flex flex-1 flex-col gap-4">
+                    {
+                        title === "Create" && (<div className="p-2 border-b flex items-start justify-between">
+                            <Publish />
+                            <div className="flex items-center justify-center gap-x-2">
+                                <TogglePreview viewMode={viewMode} setViewMode={setViewMode} />
+                                <TemplateTrigger />
+                            </div>
+                        </div>)
+                    }
                     <div className="grid auto-rows-min ">
                         <div className={`${viewMode === "Both" ? "grid md:grid-cols-2 gap-x-2" : "flex flex-col"}`}>
                             {children}
