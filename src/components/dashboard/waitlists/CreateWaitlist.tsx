@@ -1,5 +1,5 @@
 "use client"
-import { UploadIcon } from "lucide-react"
+import { Info, Landmark, Monitor, UploadIcon } from "lucide-react"
 import React, { useEffect, useState } from "react"
 import { ColorAndSizeInput } from "~/components/common/colorChanger/colorAndSizeInput"
 import { ColorChanger } from "~/components/common/colorChanger/colorChanger"
@@ -14,7 +14,11 @@ import { Label } from "~/components/ui/label"
 import { useWaitlist } from "~/contexts/WaitlistContext"
 import type { Template } from "~/types/template"
 import { tailwindBgColors } from "~/utils/colors"
-import WaitlistNameInput from "./WaitlistNameInput"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui/tooltip"
 
 type Props = {
   viewMode: "Both" | "Form" | "Preview"
@@ -47,20 +51,57 @@ const CreateWaitlist = ({ viewMode }: Props) => {
               : "flex flex-col"
               }`}
           >
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center gap-x-1">
               <div
                 id="logo"
-                className="w-full max-w-[300px] h-48 p-2 border border-dashed border-muted-foreground rounded bg-secondary/10 flex flex-col items-center justify-center"
+                className="w-full max-w-[300px] md:h-48 h-36 p-2 border border-dashed border-muted-foreground rounded bg-secondary/10 flex flex-col items-center justify-center"
               >
-                <UploadIcon className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
-                <span className="text-xs mt-1">Upload logo</span>
+                <Monitor className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
+                <span className="text-xs mt-1">Upload from device</span>
+              </div>
+
+              <div
+                id="logo"
+                className="w-full max-w-[300px] md:h-48 h-36 p-2 border border-dashed border-muted-foreground rounded bg-secondary/10 flex flex-col items-center justify-center"
+              >
+                <Landmark className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
+                <span className="text-xs mt-1">Upload from assets</span>
               </div>
             </div>
 
             <div className="flex flex-col w-full">
-              <WaitlistNameInput />
-              <Label className="text-xs">Change Background</Label>
-              <div className="flex  sm:items-center gap-2 mt-2">
+              <Label htmlFor="waitlistName" className="text-xs flex items-center">
+                Waitlist Name
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Info className="w-3 h-3" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Domain has to be assigned use unique name</p>
+                  </TooltipContent>
+                </Tooltip>
+              </Label>
+              <Input
+                type="text"
+                value={waitlistDetails?.waitlistName || template?.waitlistName || ""}
+                onChange={(e) => {
+                  setWaitlistDetails((prev) => ({
+                    ...prev,
+                    waitlistName: e.target.value,
+                  }));
+                  setTemplate((prev) => ({
+                    ...prev as Template,
+                    waitlistName: e.target.value,
+                  }));
+                }
+                }
+                placeholder="Enter a unique waitlist name"
+                className=" rounded shadow-none mt-1"
+              />
+
+
+              <Label className="text-xs mt-5">Change Background</Label>
+              <div className="flex  sm:items-center gap-2 mt-1">
                 <span
                   style={{
                     backgroundColor: waitlistDetails?.backgroundColor?.startsWith("bg-")
@@ -190,9 +231,9 @@ const CreateWaitlist = ({ viewMode }: Props) => {
         </AccordionItem>
 
         <AccordionItem value="item-3">
-           <AccordionTrigger className="md:text-md font-medium tracking-wide bg-background">
+          <AccordionTrigger className="md:text-md font-medium tracking-wide bg-background">
             <span className="px-4">Update Inputs and media</span>
-          </AccordionTrigger> 
+          </AccordionTrigger>
 
           <AccordionContent
             className={`bg-background p-4 gap-4 ${isGrid
@@ -255,7 +296,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                 </div>
               </div>
             </div>
-          </AccordionContent>        
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>

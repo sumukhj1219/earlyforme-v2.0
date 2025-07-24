@@ -12,7 +12,7 @@ export const checkName = publicProcedure.input(z.object({
             }
         })
 
-        return exist !== null
+        return {status:exist !== null, data:exist}
     } catch (error) {
         throw new TRPCError({
             message: "Internal server error in name checking",

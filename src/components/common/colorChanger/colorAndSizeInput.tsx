@@ -35,9 +35,9 @@ export function ColorAndSizeInput({ colorKey, sizeKey }: Props) {
             ...prev,
             [sizeKey]: val,
           }));
-          setTemplate((prev)=>({
+          setTemplate((prev) => ({
             ...prev as Template,
-            [sizeKey]:val
+            [sizeKey]: val
           }))
         }
         }

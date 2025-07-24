@@ -19,6 +19,8 @@ const Publish = () => {
   const { template } = useWaitlist();
   const [showDialog, setShowDialog] = useState(false);
 
+  const waitlistName = template?.waitlistName?.trim();
+
   const createWaitlist = api.waitlist.createWaitlist.useMutation({
     onSuccess: () => {
       console.log("Waitlist created successfully!");
@@ -27,6 +29,15 @@ const Publish = () => {
       console.error("Failed to create waitlist:", err);
     },
   });
+
+  const { data } = api.waitlist.checkName.useQuery(
+    {
+      waitlistName: waitlistName!,
+    },
+    {
+      enabled: !!waitlistName, // 🧠 only run when waitlistName is truthy
+    }
+  );
 
   async function handlePublish() {
     if (!session?.user?.email || status === "unauthenticated") {
@@ -39,13 +50,17 @@ const Publish = () => {
       return;
     }
 
+    if (data?.status) {
+      setShowDialog(true);
+      return;
+    }
+
     createWaitlist.mutate({
       ...template,
-      templateId: template.id, 
-      waitlistLogo:""
+      templateId: template.id,
+      waitlistLogo: "",
+      waitlistName: waitlistName!,
     });
-
-    console.log("Publishing template:", template);
   }
 
   return (
@@ -67,7 +82,7 @@ const Publish = () => {
             <DialogDescription>
               {status === "unauthenticated"
                 ? "Please log in to publish your waitlist."
-                : "Please select a valid template."}
+                : "Please select a valid template or the name already exists."}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

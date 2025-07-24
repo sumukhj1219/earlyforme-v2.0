@@ -36,12 +36,13 @@ export const createWaitlist = protectedProcedure
     try {
       const waitlist = await ctx.db.waitlist.upsert({
         where: {
-          templateId: input.templateId, // assuming `templateId` is marked as @unique in the Prisma schema
+          waitlistName: input.waitlistName
         },
         update: {
           href: input.href,
           waitlistLogo: input.waitlistLogo,
           backgroundColor: input.backgroundColor,
+          templateId: input.templateId,
 
           badge: input.badge,
           badgeColor: input.badgeColor,

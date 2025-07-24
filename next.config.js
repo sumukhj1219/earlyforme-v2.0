@@ -11,7 +11,8 @@ const config = {
     },
     eslint:{
         ignoreDuringBuilds:true
-    }
+    },
+    reactStrictMode:true
 };
 
 export default config;
