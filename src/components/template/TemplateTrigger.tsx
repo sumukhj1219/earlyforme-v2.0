@@ -11,7 +11,7 @@ import {
 } from "~/components/ui/dialog"
 import { Button } from "../ui/button"
 import { Layers } from "lucide-react"
-import { templates } from "~/config/templates"
+import { templates } from "~/config/template/templates"
 import Image from "next/image"
 import { useWaitlist } from "~/contexts/WaitlistContext"
 

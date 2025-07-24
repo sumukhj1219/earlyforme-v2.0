@@ -21,3 +21,4 @@ export const templates:Template[] = [
         video:'https://www.youtube.com/watch?v=Lqdc1lpqzAA'
     }
 ]
+

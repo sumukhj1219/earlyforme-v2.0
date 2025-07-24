@@ -7,7 +7,7 @@ import { useWaitlist } from '~/contexts/WaitlistContext'
 import type { Template } from '~/types/template'
 import { getResponsiveSize } from '~/utils/getResponsiveSize'
 
-const Template1 = ({props}:{props:Template}) => {
+const Template1 = (props?:Template) => {
   const { waitlistDetails, template } = useWaitlist()
 
   return (
@@ -31,7 +31,7 @@ const Template1 = ({props}:{props:Template}) => {
           {(props?.header || waitlistDetails?.header) ?? "Get early access"}
         </h1>
 
-        <h2 className={`${getResponsiveSize(props?.headerSize || waitlistDetails?.subHeaderSize as string) || 'text-2xl'} text-neutral-400 max-w-xl mx-auto leading-relaxed`}>
+        <h2 className={`${getResponsiveSize(props?.subHeaderSize || waitlistDetails?.subHeaderSize as string) || 'text-sm'} text-neutral-400 max-w-xl mx-auto leading-relaxed`}>
           {(props?.subHeader || waitlistDetails?.subHeader) ?? (
             <>
               Be amongst the first to experience Wait and launch a viral
