@@ -13,6 +13,9 @@ export const env = createEnv({
         : z.string().optional(),
     GOOGLE_ID: z.string(),
     GOOGLE_SECRET: z.string(),
+    R2_ACCOUNTID:z.string(),
+    R2_ACCESS_KEY:z.string(),
+    R2_SECRET:z.string(),
     DATABASE_URL: z.string().url(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
@@ -36,6 +39,9 @@ export const env = createEnv({
     AUTH_SECRET: process.env.AUTH_SECRET,
     GOOGLE_ID: process.env.GOOGLE_ID,
     GOOGLE_SECRET: process.env.GOOGLE_SECRET,
+    R2_ACCOUNTID: process.env.R2_ACCOUNTID,
+    R2_ACCESS_KEY:process.env.R2_ACCESS_KEY,
+    R2_SECRET:process.env.R2_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
   },

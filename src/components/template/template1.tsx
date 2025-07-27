@@ -16,7 +16,7 @@ const Template1 = (props?:Template) => {
         } min-h-screen flex items-center justify-center px-4 py-10`}
     >
       <div className="w-full max-w-6xl flex flex-col gap-y-6 items-center justify-center text-center">
-        <WavesIcon className="p-1 w-10 h-10 sm:w-12 sm:h-12 bg-lime-500 rounded" stroke="black" />
+        <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""}  />
 
         <Badge
           variant="outline"

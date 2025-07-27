@@ -3,10 +3,8 @@ import { AppSidebar } from "./app-sidebar"
 import {
     Breadcrumb,
     BreadcrumbItem,
-    BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
-    BreadcrumbSeparator,
 } from "~/components/ui/breadcrumb"
 import { Separator } from "~/components/ui/separator"
 import {
@@ -19,10 +17,6 @@ import { usePage } from "~/hooks/use-page"
 import { TitleChecker } from "~/utils/title-checker"
 import { instrument_serif } from "../fonts/fonts"
 import { TogglePreview } from "../tooglePreview/toggle-preview"
-import { useState } from "react"
-import type { ViewMode } from "~/types/viewMode"
-import { Button } from "~/components/ui/button"
-import { GlobeIcon, Layers } from "lucide-react"
 import TemplateTrigger from "~/components/template/TemplateTrigger"
 import Publish from "../publish/publish"
 import { useViewMode } from "~/contexts/ViewModeContext"
@@ -69,8 +63,8 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
                             </div>
                         </div>)
                     }
-                    <div className="grid auto-rows-min ">
-                        <div className={`${viewMode === "Both" ? "grid md:grid-cols-2 gap-x-2" : "flex flex-col"}`}>
+                    <div className="grid auto-rows-min">
+                        <div className={`${viewMode === "Both" && title === "Create" ? "grid md:grid-cols-2 gap-x-2" : "flex flex-col"}`}>
                             {children}
                         </div>
                     </div>

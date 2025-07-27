@@ -19,6 +19,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "~/components/ui/tooltip"
+import { uploadImage } from "~/utils/uploadImage"
+import dynamic from "next/dynamic"
+const Lucide = dynamic(()=>import("~/components/packages/lucide-icons/lucide"), {ssr:false})
 
 type Props = {
   viewMode: "Both" | "Form" | "Preview"
@@ -52,20 +55,38 @@ const CreateWaitlist = ({ viewMode }: Props) => {
               }`}
           >
             <div className="flex justify-center items-center gap-x-1">
-              <div
-                id="logo"
-                className="w-full max-w-[300px] md:h-48 h-36 p-2 border border-dashed border-muted-foreground rounded bg-secondary/10 flex flex-col items-center justify-center"
+              <label
+                htmlFor="logo"
+                className="cursor-pointer w-full max-w-[300px] md:h-48 h-36 border border-dashed border-muted-foreground rounded bg-secondary/10 flex items-center justify-center overflow-hidden"
               >
-                <Monitor className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
-                <span className="text-xs mt-1">Upload from device</span>
-              </div>
+                <input
+                  id="logo"
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={(e) => uploadImage(e, setWaitlistDetails, setTemplate)}
+                />
 
+                {!waitlistDetails?.waitlistLogo ? (
+                  <div className="flex flex-col items-center justify-center">
+                    <Monitor className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
+                    <span className="text-xs mt-1">Upload from device</span>
+                  </div>
+                ) : (
+                  <img
+                    src={waitlistDetails.waitlistLogo as string}
+                    alt="Logo Preview"
+                    className="w-full h-full object-fill rounded"
+                  />
+                )}
+              </label>
+              
               <div
                 id="logo"
                 className="w-full max-w-[300px] md:h-48 h-36 p-2 border border-dashed border-muted-foreground rounded bg-secondary/10 flex flex-col items-center justify-center"
               >
-                <Landmark className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
-                <span className="text-xs mt-1">Upload from assets</span>
+                <Lucide />
+                <span className="text-xs mt-1">Add lucide icons</span>
               </div>
             </div>
 
