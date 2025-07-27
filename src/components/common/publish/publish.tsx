@@ -26,7 +26,7 @@ const Publish = () => {
   const createWaitlist = api.waitlist.createWaitlist.useMutation({
     onSuccess: () => {
       console.log("Waitlist created successfully!");
-      setTemplate((prev)=>({...prev, userId:createWaitlist.data?.userId}))
+      setTemplate((prev)=>({...prev as Template, userId:createWaitlist.data?.userId}))
     },
     onError: (err) => {
       console.error("Failed to create waitlist:", err);
@@ -49,11 +49,6 @@ const Publish = () => {
     }
 
     if (!template || !template.id) {
-      setShowDialog(true);
-      return;
-    }
-
-    if (data?.status) {
       setShowDialog(true);
       return;
     }

@@ -14,8 +14,6 @@ const payload = z.object({
     badgeSize: z.string().optional(),
 
     waitlistName: z.string().optional(),
-    waitlistColor: z.string().optional(),
-    waitlistSize: z.string().optional(),
 
     header: z.string().optional(),
     headerColor: z.string().optional(),
@@ -50,8 +48,6 @@ export const createWaitlist = protectedProcedure
           badgeSize: input.badgeSize,
 
           waitlistName: input.waitlistName,
-          waitlistColor: input.waitlistColor,
-          waitlistSize: input.waitlistSize,
 
           header: input.header,
           headerColor: input.headerColor,
@@ -79,8 +75,6 @@ export const createWaitlist = protectedProcedure
           badgeSize: input.badgeSize,
 
           waitlistName: input.waitlistName,
-          waitlistColor: input.waitlistColor,
-          waitlistSize: input.waitlistSize,
 
           header: input.header,
           headerColor: input.headerColor,

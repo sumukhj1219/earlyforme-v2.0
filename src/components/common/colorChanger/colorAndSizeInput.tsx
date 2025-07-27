@@ -29,10 +29,10 @@ export function ColorAndSizeInput({ colorKey, sizeKey }: Props) {
       />
 
       <Select
-        value={waitlistDetails?.[sizeKey] || template?.[sizeKey] || ""}
+        value={waitlistDetails?.[sizeKey] as string || template?.[sizeKey] as string || ""}
         onValueChange={(val) => {
           setWaitlistDetails((prev) => ({
-            ...prev,
+            ...prev as WaitlistDetails,
             [sizeKey]: val,
           }));
           setTemplate((prev) => ({

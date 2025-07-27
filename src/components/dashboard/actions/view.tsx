@@ -10,6 +10,7 @@ import {
 } from "~/components/ui/dropdown-menu"
 import DeleteWaitlist from './deleteWaitlist'
 import Link from 'next/link';
+import UpdateStatus from './updateStatus';
 
 interface ViewProps {
     waitlistId: string;
@@ -18,6 +19,8 @@ interface ViewProps {
 
 const View = ({ waitlistId, refetch }: ViewProps) => {
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const [showEditDialog, setShowEditDialog] = useState(false);
+
     return (
         <>
             <DropdownMenu>
@@ -25,7 +28,12 @@ const View = ({ waitlistId, refetch }: ViewProps) => {
                     View
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                    <DropdownMenuItem className='flex items-center'>
+                    <DropdownMenuItem
+                        onSelect={(e) => {
+                            e.preventDefault()
+                            setShowEditDialog(true)
+                        }}
+                        className='flex items-center'>
                         <SignalHigh strokeWidth={4} />
                         Update Status
                     </DropdownMenuItem>
@@ -48,12 +56,19 @@ const View = ({ waitlistId, refetch }: ViewProps) => {
                 </DropdownMenuContent>
             </DropdownMenu>
 
-            <DeleteWaitlist
+            {showDeleteDialog && <DeleteWaitlist
                 waitlistId={waitlistId}
                 open={showDeleteDialog}
                 onOpenChange={setShowDeleteDialog}
                 refetch={refetch}
-            />
+            />}
+
+            {showEditDialog && <UpdateStatus
+                waitlistId={waitlistId}
+                open={showEditDialog}
+                onOpenChange={setShowEditDialog}
+                refetch={refetch}
+            />}
         </>
     )
 }

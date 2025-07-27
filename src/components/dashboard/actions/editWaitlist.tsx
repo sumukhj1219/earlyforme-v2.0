@@ -8,6 +8,7 @@ import { useWaitlist } from '~/contexts/WaitlistContext';
 import { templateMap } from '~/config/template/templateMap';
 import type { Template } from '~/types/template';
 import { useEffect } from "react"
+import type { WaitlistDetails } from '~/types/waitlist';
 
 const EditWaitlist = ({ id }: { id: string }) => {
     const { viewMode } = useViewMode();
@@ -22,15 +23,18 @@ const EditWaitlist = ({ id }: { id: string }) => {
         </>
     }
 
-    useEffect(() => {
-        if (waitlistData) {
-            setWaitlistDetails(waitlistData)
-            setTemplate({
-                ...waitlistData,
-                component: templateMap[waitlistData.templateId] as FC<Template>,
-            })
-        }
-    }, [waitlistData])
+   useEffect(() => {
+    if (waitlistData) {
+        setWaitlistDetails(waitlistData);
+        setTemplate({
+            id: waitlistData.templateId,
+            component: templateMap[waitlistData.templateId] as FC<Template>,
+            href: waitlistData.href, 
+            ...waitlistData,
+        });
+    }
+}, [waitlistData]);
+
 
     return (
         <>

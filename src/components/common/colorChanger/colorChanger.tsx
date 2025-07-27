@@ -60,7 +60,7 @@ export function ColorChanger({
                     const selected = currentValue === value ? "" : currentValue
                     setValue(selected)
                     setWaitlistDetails((prev) => ({
-                      ...prev,
+                      ...prev as WaitlistDetails,
                       [type]: selected
                     }));
                     setTemplate((prev)=>({

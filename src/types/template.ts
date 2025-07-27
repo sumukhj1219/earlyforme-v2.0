@@ -1,8 +1,9 @@
+import type { FC } from "react";
 import type { WaitlistDetails } from "./waitlist";
 
 export interface Template extends WaitlistDetails{
-    id:string;
-    href:string;
-    component:React.FC;
-    userId:string;
+    id?:number;
+    href?:string;
+    component?:FC<Template>;
+    userId?:string;
 }

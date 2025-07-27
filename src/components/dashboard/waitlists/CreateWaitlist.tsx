@@ -21,6 +21,7 @@ import {
 } from "~/components/ui/tooltip"
 import { uploadImage } from "~/utils/uploadImage"
 import dynamic from "next/dynamic"
+import type { WaitlistDetails } from "~/types/waitlist"
 const Lucide = dynamic(()=>import("~/components/packages/lucide-icons/lucide"), {ssr:false})
 
 type Props = {
@@ -108,7 +109,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                 value={waitlistDetails?.waitlistName || template?.waitlistName || ""}
                 onChange={(e) => {
                   setWaitlistDetails((prev) => ({
-                    ...prev,
+                    ...prev as WaitlistDetails,
                     waitlistName: e.target.value,
                   }));
                   setTemplate((prev) => ({
@@ -141,7 +142,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                   value={waitlistDetails?.backgroundColor || template?.backgroundColor || ""}
                   onChange={(e) =>
                     setWaitlistDetails((prev) => ({
-                      ...prev,
+                      ...prev as WaitlistDetails,
                       backgroundColor: e.target.value,
                     }))
                   }
@@ -177,7 +178,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     value={waitlistDetails?.badge || template?.badge || ""}
                     onChange={(e) => {
                       setWaitlistDetails((prev) => ({
-                        ...prev,
+                        ...prev as WaitlistDetails,
                         badge: e.target.value,
                       }));
                       setTemplate((prev) => ({
@@ -205,7 +206,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     value={waitlistDetails?.header || template?.header || ""}
                     onChange={(e) => {
                       setWaitlistDetails((prev) => ({
-                        ...prev,
+                        ...prev as WaitlistDetails,
                         header: e.target.value,
                       }));
                       setTemplate((prev) => ({
@@ -232,7 +233,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     value={waitlistDetails?.subHeader || template?.subHeader || ""}
                     onChange={(e) => {
                       setWaitlistDetails((prev) => ({
-                        ...prev,
+                        ...prev as WaitlistDetails,
                         subHeader: e.target.value,
                       }));
                       setTemplate((prev) => ({
@@ -275,7 +276,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     value={waitlistDetails?.buttonPlaceholder || template?.buttonPlaceholder || ""}
                     onChange={(e) => {
                       setWaitlistDetails((prev) => ({
-                        ...prev,
+                        ...prev as WaitlistDetails,
                         buttonPlaceholder: e.target.value,
                       }));
                       setTemplate((prev) => ({
@@ -302,7 +303,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     value={waitlistDetails?.video || template?.video || ""}
                     onChange={(e) => {
                       setWaitlistDetails((prev) => ({
-                        ...prev,
+                        ...prev as WaitlistDetails,
                         video: e.target.value,
                       }));
                       setTemplate((prev) => ({
