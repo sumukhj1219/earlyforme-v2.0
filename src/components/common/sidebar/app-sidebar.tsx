@@ -1,5 +1,5 @@
 import * as React from "react"
-import { GalleryVerticalEnd, ListTreeIcon, ScrollText } from "lucide-react"
+import { Building2, GalleryVerticalEnd, ListTreeIcon, ScrollText } from "lucide-react"
 import { BsFileEarmarkSpreadsheet } from "react-icons/bs";
 import { NavMain } from "./nav-main"
 import { SidebarOptInForm } from "./sidebar-opt-in-form"
@@ -26,10 +26,11 @@ const data = {
           url: "/waitlists",
           icon: ListTreeIcon
         },
-        // {
-        //   title: "",
-        //   url: "#",
-        // },
+        {
+          title: "Manage Assets",
+          url: "/assets",
+          icon: Building2
+        },
       ],
     },
     {
