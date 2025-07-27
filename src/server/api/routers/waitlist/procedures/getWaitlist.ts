@@ -14,6 +14,7 @@ export const getWaitlists = protectedProcedure.query(async ({ ctx }) => {
       waitlistName: waitlist.waitlistName,
       waitlistLogo: waitlist.waitlistLogo,
       templateId: waitlist.templateId,
+      status: waitlist.status
     }));
   } catch (error) {
     throw new TRPCError({

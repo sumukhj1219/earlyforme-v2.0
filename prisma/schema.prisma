@@ -102,6 +102,14 @@ model Waitlist {
 
     video String?
 
+    status Status @default(Active)
+
     userId String
     user   User   @relation(fields: [userId], references: [id])
+}
+
+enum Status{
+    Active
+    Inactive
+    Deleted
 }

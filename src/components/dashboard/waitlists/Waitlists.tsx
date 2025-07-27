@@ -9,7 +9,10 @@ import {
     TableHeader,
     TableRow,
 } from "~/components/ui/table"
+import { Status } from '~/config/waitlist/status'
 import { api } from '~/trpc/react'
+
+
 
 const Waitlists = () => {
     const { data, isLoading } = api.waitlist.getWaitlists.useQuery()
@@ -34,17 +37,24 @@ const Waitlists = () => {
                         </TableHeader>
                         <TableBody>
                             {
-                                data?.map((waitlist) => (
-                                    <TableRow key={waitlist.id} className="text-xs">
-                                        <TableCell >{waitlist.id}</TableCell>
-                                        <TableCell >Template-{waitlist.templateId}</TableCell>
-                                        <TableCell>{waitlist.waitlistName}</TableCell>
-                                        <TableCell >{`https://${waitlist.waitlistName}.earlyfor.me`}</TableCell>
-                                        <TableCell >NA</TableCell>
-                                        <TableCell >NA</TableCell>
-                                        <TableCell >NA</TableCell>
-                                    </TableRow>
-                                ))
+                                data?.map((waitlist) => {
+                                    const Icon = Status[waitlist.status]?.icon;
+                                    return (
+                                        <TableRow key={waitlist.id} className="text-xs">
+                                            <TableCell>{waitlist.id}</TableCell>
+                                            <TableCell>Template-{waitlist.templateId}</TableCell>
+                                            <TableCell>{waitlist.waitlistName}</TableCell>
+                                            <TableCell>{`https://${waitlist.waitlistName}.earlyfor.me`}</TableCell>
+                                            <TableCell className={`flex font-medium ${Status[waitlist.status]?.text} items-center w-18 p-0.5 rounded-md gap-1 justify-center m-1 ${Status[waitlist.status]?.bg || ''}`}>
+                                                {Icon && <Icon className="w-3 h-3" stroke={Status[waitlist.status]?.stroke} />}
+                                                {Status[waitlist.status]?.label || "Unknown"}
+                                            </TableCell>
+                                            <TableCell>NA</TableCell>
+                                            <TableCell>NA</TableCell>
+                                        </TableRow>
+                                    );
+                                })
+
                             }
                         </TableBody>
                     </Table>

@@ -1,6 +1,7 @@
 import { protectedProcedure } from "~/server/api/trpc";
 import z from "zod";
 import { TRPCError } from "@trpc/server";
+import { Status } from "@prisma/client";
 
 const payload = z.object({
     templateId: z.number(),
@@ -93,7 +94,7 @@ export const createWaitlist = protectedProcedure
           buttonBackground: input.buttonBackground,
 
           video: input.video,
-
+          status: Status.Active,
           userId: ctx.session.user.id,
         },
       });
