@@ -19,6 +19,10 @@ function extractSubdomain(request: NextRequest): string | null {
     return sub || null;
   }
 
+  if (hostname?.endsWith('.earlyforme-v2-0.vercel.app')) {
+    return hostname.replace('.earlyforme-v2-0.vercel.app', '');
+  }
+
   const rootDomainFormatted = rootDomain.split(':')[0];
   const isSubdomain =
     hostname !== rootDomainFormatted &&
@@ -29,6 +33,7 @@ function extractSubdomain(request: NextRequest): string | null {
     ? hostname?.replace(`.${rootDomainFormatted}`, '') as string
     : null;
 }
+
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
