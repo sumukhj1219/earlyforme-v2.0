@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ListTreeIcon, Scroll, ScrollText } from "lucide-react";
+import { FileEdit, ListTreeIcon, Scroll, ScrollText } from "lucide-react";
 import { motion } from "motion/react"
 
 export function TitleChecker({ title }: { title: string }): React.ReactNode {
@@ -11,7 +11,7 @@ export function TitleChecker({ title }: { title: string }): React.ReactNode {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{
           duration: 0.45,
-          ease: [0.22, 1, 0.36, 1], 
+          ease: [0.22, 1, 0.36, 1],
         }}
         className="flex items-center gap-2"
       >
@@ -32,18 +32,37 @@ export function TitleChecker({ title }: { title: string }): React.ReactNode {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{
           duration: 0.45,
-          ease: [0.22, 1, 0.36, 1], 
+          ease: [0.22, 1, 0.36, 1],
         }}
         className="flex items-center gap-2"
       >
-        <ListTreeIcon 
+        <ListTreeIcon
           stroke="white"
           className="w-6 h-6 p-0.5 bg-gradient-to-br from-primary  to-primary/50 rounded"
         />
         <span>Waitlists</span>
       </motion.div>
-
     );
+  }
+
+  else if (title.length >= 25) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{
+          duration: 0.45,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="flex items-center gap-2"
+      >
+        <FileEdit
+          stroke="white"
+          className="w-6 h-6 p-0.5 bg-gradient-to-br from-primary  to-primary/50 rounded"
+        />
+        <span>Edit Waitlist</span>
+      </motion.div>
+    )
   }
 
   return <span>{title}</span>;

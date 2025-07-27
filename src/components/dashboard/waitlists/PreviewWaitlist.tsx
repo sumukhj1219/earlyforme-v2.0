@@ -10,7 +10,7 @@ const PreviewWaitlist = () => {
 
   return (
     <div className=' h-full'>
-      {TemplateComponent ? <TemplateComponent /> : <LookForTemplate />}
+      {TemplateComponent ? <TemplateComponent  /> : <LookForTemplate />}
     </div>
   )
 }

@@ -55,7 +55,7 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
 
                 <div className="flex flex-1 flex-col gap-4">
                     {
-                        title === "Create" && (<div className="p-2 border-b flex items-start justify-between">
+                        (title === "Create" || title.length >= 32)&& (<div className="p-2 border-b flex items-start justify-between">
                             <Publish />
                             <div className="flex items-center justify-center gap-x-2">
                                 <TogglePreview viewMode={viewMode} setViewMode={setViewMode} />
@@ -64,7 +64,7 @@ export default function SidebarWrapper({ children }: { children: React.ReactNode
                         </div>)
                     }
                     <div className="grid auto-rows-min">
-                        <div className={`${viewMode === "Both" && title === "Create" ? "grid md:grid-cols-2 gap-x-2" : "flex flex-col"}`}>
+                        <div className={`${viewMode === "Both" && (title === "Create" || title.length >= 32) ? "grid md:grid-cols-2 gap-x-2" : "flex flex-col"}`}>
                             {children}
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import { ViewModeProvider } from '~/contexts/ViewModeContext';
 import SidebarWrapper from '~/components/common/sidebar/sidebar-wrapper';
+import { Toaster } from '~/components/ui/sonner';
 
 export default function DashboardLayout({
   children,
@@ -8,7 +9,10 @@ export default function DashboardLayout({
 }) {
   return (
     <ViewModeProvider>
-      <SidebarWrapper>{children}</SidebarWrapper>
+      <SidebarWrapper>
+        {children}
+        <Toaster />
+      </SidebarWrapper>
     </ViewModeProvider>
   );
 }

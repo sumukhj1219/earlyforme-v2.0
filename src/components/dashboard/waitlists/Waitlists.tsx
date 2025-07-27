@@ -11,18 +11,19 @@ import {
 } from "~/components/ui/table"
 import { Status } from '~/config/waitlist/status'
 import { api } from '~/trpc/react'
+import View from '../actions/view'
 
 
 
 const Waitlists = () => {
-    const { data, isLoading } = api.waitlist.getWaitlists.useQuery()
+    const { data, isLoading, refetch } = api.waitlist.getWaitlists.useQuery()
 
     return (
         <div className='flex flex-col gap-4 p-2'>
             <div className="max-w-[calc(100svw-2rem)] overflow-hidden rounded-md border md:max-w-full">
                 <div className="relative w-full overflow-x-auto">
 
-                    <Table className="w-full caption-bottom text-sm">
+                    <Table className="w-full caption-bottom text-xs">
                         <TableHeader className="bg-muted/50">
                             <TableRow>
                                 <TableHead className="w-[300px]">Id</TableHead>
@@ -32,7 +33,7 @@ const Waitlists = () => {
                                 <TableHead className="">Status</TableHead>
                                 <TableHead className="">Total users</TableHead>
                                 <TableHead className="">Created on</TableHead>
-
+                                <TableHead className="">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -40,21 +41,23 @@ const Waitlists = () => {
                                 data?.map((waitlist) => {
                                     const Icon = Status[waitlist.status]?.icon;
                                     return (
-                                        <TableRow key={waitlist.id} className="text-xs">
+                                        <TableRow key={waitlist.id} className="text-xs font-medium">
                                             <TableCell>{waitlist.id}</TableCell>
                                             <TableCell>Template-{waitlist.templateId}</TableCell>
                                             <TableCell>{waitlist.waitlistName}</TableCell>
                                             <TableCell>{`https://${waitlist.waitlistName}.earlyfor.me`}</TableCell>
-                                            <TableCell className={`flex font-medium ${Status[waitlist.status]?.text} items-center w-18 p-0.5 rounded-md gap-1 justify-center m-1 ${Status[waitlist.status]?.bg || ''}`}>
+                                            <TableCell className={`flex font-medium ${Status[waitlist.status]?.text} items-center w-18 p-0.5 rounded-md gap-1 my-2.5 justify-center ${Status[waitlist.status]?.bg || ''}`}>
                                                 {Icon && <Icon className="w-3 h-3" stroke={Status[waitlist.status]?.stroke} />}
                                                 {Status[waitlist.status]?.label || "Unknown"}
                                             </TableCell>
                                             <TableCell>NA</TableCell>
                                             <TableCell>NA</TableCell>
+                                            <TableCell>
+                                                <View waitlistId={waitlist.id} refetch={refetch} />
+                                            </TableCell>
                                         </TableRow>
                                     );
                                 })
-
                             }
                         </TableBody>
                     </Table>

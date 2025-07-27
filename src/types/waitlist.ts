@@ -1,9 +1,11 @@
+import type { Status } from "@prisma/client";
 import type { IconNode } from "lucide-react";
 
 export type WaitlistDetails = {
+  id?:string;
   waitlistLogo?: string;
   backgroundColor?: string;
-
+  templateId?: string;
   badge?: string;
   badgeColor?: string;
   badgeSize?: string;
@@ -25,6 +27,7 @@ export type WaitlistDetails = {
   
   testimonials?: React.ReactNode;
   video?: string;
+  status: Status
 };
 
 
