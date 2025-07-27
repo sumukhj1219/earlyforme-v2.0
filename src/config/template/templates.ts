@@ -3,7 +3,7 @@ import Template1 from "~/components/template/template1"
 
 export const templates:Template[] = [
     {
-        id:1,
+        id:'1',
         href:'/templates/template1.png',
         component: Template1,
         backgroundColor:'bg-neutral-900',
@@ -17,7 +17,8 @@ export const templates:Template[] = [
         subHeaderSize:'text-sm',
         buttonPlaceholder:'Join Now',
         buttonBackground:'bg-lime-500',
-        video:'https://www.youtube.com/watch?v=Lqdc1lpqzAA'
+        video:'https://www.youtube.com/watch?v=Lqdc1lpqzAA',
+        userId:""
     }
 ]
 

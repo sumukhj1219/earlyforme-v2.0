@@ -104,6 +104,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
               </Label>
               <Input
                 type="text"
+                disabled={template?.userId ? true : false}
                 value={waitlistDetails?.waitlistName || template?.waitlistName || ""}
                 onChange={(e) => {
                   setWaitlistDetails((prev) => ({

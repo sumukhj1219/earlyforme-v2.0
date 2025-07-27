@@ -13,17 +13,20 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 import { api } from "~/trpc/react";
+import type { Template } from "~/types/template";
 
 const Publish = () => {
   const { data: session, status } = useSession();
   const { template } = useWaitlist();
   const [showDialog, setShowDialog] = useState(false);
+  const {setTemplate} = useWaitlist()
 
   const waitlistName = template?.waitlistName?.trim();
 
   const createWaitlist = api.waitlist.createWaitlist.useMutation({
     onSuccess: () => {
       console.log("Waitlist created successfully!");
+      setTemplate((prev)=>({...prev, userId:createWaitlist.data?.userId}))
     },
     onError: (err) => {
       console.error("Failed to create waitlist:", err);
@@ -35,7 +38,7 @@ const Publish = () => {
       waitlistName: waitlistName!,
     },
     {
-      enabled: !!waitlistName, // 🧠 only run when waitlistName is truthy
+      enabled: !!waitlistName, 
     }
   );
 

@@ -26,8 +26,10 @@ export type WaitlistDetails = {
   buttonBackground?:string;
   
   testimonials?: React.ReactNode;
+
   video?: string;
-  status: Status
+  status: Status;
+  userId?: string;
 };
 
 
