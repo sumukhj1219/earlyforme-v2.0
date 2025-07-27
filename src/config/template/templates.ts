@@ -1,6 +1,5 @@
 import type { Template } from "~/types/template";
 import Template1 from "~/components/template/template1"
-import { WavesIcon } from "lucide-react";
 
 export const templates:Template[] = [
     {
@@ -8,7 +7,7 @@ export const templates:Template[] = [
         href:'/templates/template1.png',
         component: Template1,
         backgroundColor:'bg-neutral-900',
-        waitlistLogo: WavesIcon,
+        waitlistLogo: "",
         badge: 'Available in early 2025',
         badgeSize:'text-xs',
         header:'Get early access',
