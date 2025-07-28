@@ -1,12 +1,14 @@
-export const uploadImage = async (
+export const uploadAssets = async (
   e: React.ChangeEvent<HTMLInputElement>,
-  uploadAsset: (data: { url: string }) => void
+  uploadAsset: (data: { url: string }) => void,
+  signal: AbortSignal
 ): Promise<string | null> => {
   const file = e.target.files?.[0];
   if (!file) return null;
 
   const getUrlRes = await fetch("/api/upload", {
     method: "POST",
+    signal,
     headers: {
       "Content-Type": "application/json",
     },
@@ -17,6 +19,7 @@ export const uploadImage = async (
 
   const uploadRes = await fetch(url, {
     method: "PUT",
+    signal,
     headers: {
       "Content-Type": file.type,
     },
