@@ -4,10 +4,10 @@ function extractSubdomain(request: NextRequest): string | null {
   const host = request.headers.get("host") || "";
   const hostname = host.split(":")[0];
 
-  if (hostname?.endsWith(".vercel.app")) {
+  if (hostname?.endsWith(".earlyfor.me")) {
     const parts = hostname.split(".");
     const subdomain = parts[0];
-    return subdomain === "earlyforme-v2-0" ? null : subdomain;
+    return subdomain === "earlyfor.me" ? null : subdomain as string;
   }
 
   if (hostname?.endsWith(".localhost")) {
