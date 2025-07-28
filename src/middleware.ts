@@ -2,36 +2,32 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { rootDomain } from '~/lib/utils';
 
 function extractSubdomain(request: NextRequest): string | null {
-  const url = request.url;
-  const host = request.headers.get('host') || '';
-  const hostname = host.split(':')[0];
-
-  if (url.includes('localhost') || url.includes('127.0.0.1')) {
-    const match = hostname?.match(/^([^.]+)\.localhost$/);
-    if (match && match[1]) {
-      return match[1];
-    }
-    return null;
+  const host = request.headers.get("host") || "";
+  const hostname = host.split(":")[0];
+  
+  if (hostname?.endsWith(".earlyforme-v2-0.vercel.app")) {
+    const subdomain = hostname.replace(".earlyforme-v2-0.vercel.app", "");
+    return subdomain === "earlyforme-v2-0" ? null : subdomain;
+  }
+  
+  if (hostname?.endsWith(".localhost")) {
+    const match = hostname.match(/^([^.]+)\.localhost$/);
+    return match?.[1] || null;
   }
 
-  if (hostname?.includes('---') && hostname.endsWith('.vercel.app')) {
-    const [sub] = hostname.split('---');
+  if (hostname?.includes("---") && hostname.endsWith(".vercel.app")) {
+    const [sub] = hostname.split("---");
     return sub || null;
   }
 
-  if (hostname?.endsWith('.earlyforme-v2-0.vercel.app')) {
-    return hostname.replace('.earlyforme-v2-0.vercel.app', '');
-  }
 
-  const rootDomainFormatted = rootDomain.split(':')[0];
+  const rootDomainFormatted = rootDomain.split(":")[0];
   const isSubdomain =
     hostname !== rootDomainFormatted &&
     hostname !== `www.${rootDomainFormatted}` &&
     hostname?.endsWith(`.${rootDomainFormatted}`);
 
-  return isSubdomain
-    ? hostname?.replace(`.${rootDomainFormatted}`, '') as string
-    : null;
+  return isSubdomain ? hostname?.replace(`.${rootDomainFormatted}`, "") as string : null;
 }
 
 
