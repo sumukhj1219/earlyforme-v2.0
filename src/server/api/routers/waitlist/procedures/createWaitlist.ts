@@ -13,7 +13,7 @@ const payload = z.object({
     badgeColor: z.string().optional(),
     badgeSize: z.string().optional(),
 
-    waitlistName: z.string().optional(),
+    waitlistName: z.string(),
 
     header: z.string().optional(),
     headerColor: z.string().optional(),

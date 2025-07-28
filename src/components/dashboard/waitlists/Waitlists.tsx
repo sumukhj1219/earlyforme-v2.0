@@ -47,8 +47,8 @@ const Waitlists = () => {
                                             <TableCell>Template-{waitlist.templateId}</TableCell>
                                             <TableCell>{waitlist.waitlistName}</TableCell>
                                             <TableCell className=''>
-                                                <Link className='underline p-0.5 bg-sky-500/20 text-sky-200 rounded-md' href={`https://${waitlist.waitlistName}.earlyforme-v2-0.vercel.app`}>
-                                                    {`https://${waitlist.waitlistName}.earlyforme-v2-0.vercel.app`}
+                                                <Link className='underline p-0.5 bg-sky-500/20 text-sky-200 rounded-md' href={`https://${waitlist.waitlistName}.earlyfor.me`}>
+                                                    {`https://${waitlist.waitlistName}.earlyfor.me`}
                                                 </Link>
                                             </TableCell>
                                             <TableCell className={`flex font-medium ${Status[waitlist.status]?.text} items-center w-18 p-0.5 rounded-md gap-1 my-2.5 justify-center ${Status[waitlist.status]?.bg || ''}`}>
