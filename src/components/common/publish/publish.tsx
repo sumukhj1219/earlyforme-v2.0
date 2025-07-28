@@ -48,7 +48,7 @@ const Publish = () => {
       return;
     }
 
-    if (!template || !template.id) {
+    if (!template || !template.templateId) {
       setShowDialog(true);
       return;
     }
