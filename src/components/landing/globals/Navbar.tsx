@@ -20,14 +20,6 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-2 ml-auto">
-          <Link
-            href="/create"
-            className="flex items-center gap-1 px-2 py-2 rounded text-sm font-semibold
-            bg-foreground text-background dark:bg-primary dark:text-background hover:opacity-90 transition"
-          >
-            Create Waitlist
-            <ArrowRight className="w-4 h-4" />
-          </Link>
             <ThemeToggle />
         </div>
       </div>
