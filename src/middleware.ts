@@ -21,11 +21,12 @@ function extractSubdomain(request: NextRequest): string | null {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const subdomain = extractSubdomain(request);
+  const PUBLIC_DOMAINS = ["www", "app"]
 
   console.log("Middleware running → host:", request.headers.get("host"));
   console.log("Detected subdomain:", subdomain);
 
-  if (!subdomain) return NextResponse.next();
+  if (!subdomain || PUBLIC_DOMAINS.includes(subdomain)) return NextResponse.next();
 
   const ignoredPaths = ['/api', '/login', '/signup', '/admin', '/create'];
   if (ignoredPaths.some((p) => pathname.startsWith(p))) {
