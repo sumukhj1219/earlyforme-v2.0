@@ -62,7 +62,7 @@ const ManageAssets = () => {
                 <h1 className={`${instrument_serif.className} text-2xl md:text-3xl font-semibold`}>
                     Local Logos
                 </h1>
-                <p className="text-xs md:text-sm text-secondary/50">
+                <p className="text-xs md:text-sm text-primary/80">
                     Manage and upload all your images in here to access easily.
                 </p>
             </div>

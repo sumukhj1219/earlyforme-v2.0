@@ -1,4 +1,4 @@
-import {Instrument_Serif, Waiting_for_the_Sunrise} from "next/font/google"
+import {Instrument_Serif, JetBrains_Mono, Waiting_for_the_Sunrise} from "next/font/google"
 
 
 export const instrument_serif = Instrument_Serif({
@@ -9,6 +9,12 @@ export const instrument_serif = Instrument_Serif({
 
 export const waiting_for_the_sunrise = Waiting_for_the_Sunrise({
     variable:'--font-waiting_for_the_sunrise',
+    weight:"400",
+    subsets:["latin"]
+})
+
+export const jetbrains_mono = JetBrains_Mono({
+    variable:'--font-jetbrains_mono',
     weight:"400",
     subsets:["latin"]
 })
