@@ -1,9 +1,10 @@
 import type { Template } from "~/types/template";
 import Template1 from "~/components/template/template1"
+import { Status } from "@prisma/client";
 
 export const templates:Template[] = [
     {
-        id:1,
+        templateId:1,
         href:'/templates/template1.png',
         component: Template1,
         backgroundColor:'bg-neutral-900',
@@ -20,7 +21,8 @@ export const templates:Template[] = [
         buttonPlaceholder:'Join Now',
         buttonBackground:'bg-lime-500',
         video:'https://www.youtube.com/watch?v=Lqdc1lpqzAA',
-        userId:""
+        userId:"",
+        status:Status.Active
     }
 ]
 

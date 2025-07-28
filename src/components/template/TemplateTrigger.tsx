@@ -55,7 +55,7 @@ const TemplateTrigger = () => {
               >
                 <Image
                   src={t.href}
-                  alt={`Template ${t.id}`}
+                  alt={`Template ${t.templateId}`}
                   width={300}
                   height={200}
                   className="rounded-md"
