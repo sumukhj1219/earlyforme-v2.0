@@ -8,7 +8,7 @@ export default function SubDomainPage() {
   const params = useParams();
   const subdomain = params?.subdomain as string | undefined;
 
-  if (pathname !== '/' || !subdomain) return null;
+  if (!subdomain) return null;
 
   return <SubDomain subdomain={subdomain} />;
 }
