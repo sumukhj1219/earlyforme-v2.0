@@ -64,6 +64,7 @@ model User {
     sessions      Session[]
     posts         Post[]
     Waitlists     Waitlist[]
+    Assets        Assets[]
 }
 
 model VerificationToken {
@@ -110,4 +111,11 @@ enum Status{
     Active
     Inactive
     Deleted
+}
+
+model Assets {
+    id String @id @default(uuid())
+    url String
+    userId String
+    user User @relation(fields: [userId], references: [id])
 }

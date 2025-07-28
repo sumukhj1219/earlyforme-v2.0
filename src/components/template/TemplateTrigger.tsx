@@ -45,16 +45,16 @@ const TemplateTrigger = () => {
           <div className="flex flex-col items-center mt-4">
             {templates.map((t) => (
               <div
-                key={t.id}
+                key={t.templateId}
                 onClick={() => setTemplate(() => t)}
                 className={`mt-5 rounded-md overflow-hidden border-2 transition cursor-pointer ${
-                  template?.id === t.id
+                  template?.templateId === t.templateId
                     ? "border-primary"
                     : "border-transparent hover:border-neutral-700"
                 }`}
               >
                 <Image
-                  src={t.href}
+                  src={t.href as string}
                   alt={`Template ${t.templateId}`}
                   width={300}
                   height={200}

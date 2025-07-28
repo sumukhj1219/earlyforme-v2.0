@@ -1,7 +1,24 @@
+"use client"
+
 import { Image, Monitor } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { instrument_serif } from '~/components/common/fonts/fonts'
+import { uploadImage } from '~/components/packages/upload-asset/uploadAsset'
+import { api } from '~/trpc/react'
+
 const ManageAssets = () => {
+    const [assets, setAssets] = useState<string[]>([])
+
+    const { mutate: uploadAsset } = api.assets.uploadAsset.useMutation()
+
+    const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const url = await uploadImage(e, uploadAsset)
+        console.log(url)
+        if (url) {
+            setAssets(prev => [...prev, url])
+        }
+    }
+
     return (
         <div className="w-full p-4 space-y-4">
             <div className="bg-secondary/5 p-3 rounded-md">
@@ -20,7 +37,7 @@ const ManageAssets = () => {
                 </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
                 <label
                     htmlFor="logo"
                     className="cursor-pointer aspect-square border border-dashed border-muted-foreground rounded-md bg-secondary/10 flex items-center justify-center hover:bg-secondary/20 transition"
@@ -30,6 +47,7 @@ const ManageAssets = () => {
                         type="file"
                         className="hidden"
                         accept="image/*"
+                        onChange={handleUpload}
                     />
                     <div className="flex flex-col items-center justify-center text-center">
                         <Monitor className="w-8 h-8 p-1 bg-gradient-to-br from-primary to-primary/50 rounded text-white" />
@@ -37,12 +55,16 @@ const ManageAssets = () => {
                     </div>
                 </label>
 
-                {[1, 2, 3].map((i) => (
+                {assets.map((url, index) => (
                     <div
-                        key={i}
-                        className="aspect-square bg-secondary/10 border rounded-md flex items-center justify-center text-xs text-muted-foreground"
+                        key={index}
+                        className="aspect-square bg-secondary/10 border rounded-md overflow-hidden"
                     >
-                        Image {i}
+                        <img
+                            src={url}
+                            alt={`Uploaded ${index}`}
+                            className="object-cover w-full h-full"
+                        />
                     </div>
                 ))}
             </div>
