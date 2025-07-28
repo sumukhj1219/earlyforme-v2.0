@@ -55,7 +55,7 @@ const Publish = () => {
 
     createWaitlist.mutate({
       ...template,
-      templateId: template.id,
+      templateId: template.templateId as number,
       waitlistLogo: template.waitlistLogo as string,
       waitlistName: waitlistName!,
     });

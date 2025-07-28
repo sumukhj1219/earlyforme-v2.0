@@ -27,9 +27,9 @@ const EditWaitlist = ({ id }: { id: string }) => {
     if (waitlistData) {
         setWaitlistDetails(waitlistData);
         setTemplate({
-            id: waitlistData.templateId,
             component: templateMap[waitlistData.templateId] as FC<Template>,
             href: waitlistData.href, 
+            templateId:waitlistData.templateId,
             ...waitlistData,
         });
     }
