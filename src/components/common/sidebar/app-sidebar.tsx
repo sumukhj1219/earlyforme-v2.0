@@ -54,7 +54,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <a href="/">
                 <div className="bg-gradient-to-br from-primary to-primary/50 text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <BsFileEarmarkSpreadsheet className="size-5 " stroke="white" />
                 </div>

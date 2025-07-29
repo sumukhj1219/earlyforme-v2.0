@@ -1,12 +1,30 @@
+"use client"
 import { Code, Database, Globe, LayoutDashboard, Mail, Users } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { BsFileEarmarkSpreadsheet } from 'react-icons/bs'
 import { jetbrains_mono } from '~/components/common/fonts/fonts'
+import { motion } from "motion/react"
 
 const Animation1 = () => {
+    const [resolved, setResolved] = useState(false);
+
+    const variants = {
+        animate: {
+            opacity: 0,
+            y: -5,
+            transition: {
+                duration: 0.3,
+            },
+        },
+        initial: {
+            opacity: 1,
+            y: 0
+        },
+    };
+
     return (
         <div>
-            <svg viewBox='0 0 1440 500' width={"100%"} height={"100%"}>
+            <svg viewBox='0 0 1440 501' width={"100%"} height={"100%"}>
                 <defs>
                     <radialGradient id='gradient' cx={0.5} cy={0.5} r={0.7} gradientUnits='objectBoundingBox'>
                         <stop offset="0" stopColor="#262624" />
@@ -23,51 +41,76 @@ const Animation1 = () => {
                     </linearGradient>
                 </defs>
                 <g className='logo' >
-                    <rect x={10} rx={10} y={150} width={100} filter='blur(10px)' fill='#222220' height={100}></rect>
-                    <rect x={10} rx={10} y={150} width={100} strokeWidth={0.5} stroke='url(#linear-gradient)' height={100} fill='url(#gradient)'></rect>
-                    <BsFileEarmarkSpreadsheet x={40} y={180} filter='blur(5px)' fill='url(#linear-gradient-2)' className="size-5" size={42} />
-                    <BsFileEarmarkSpreadsheet x={40} y={180} fill='url(#linear-gradient-2)' className="size-5" size={42} />
+                    <rect x={450} rx={10} y={150} width={100} filter='blur(10px)' fill='#222220' height={100}></rect>
+                    <rect x={450} rx={10} y={150} width={100} strokeWidth={0.5} stroke='url(#linear-gradient)' height={100} fill='url(#gradient)'></rect>
+                    <BsFileEarmarkSpreadsheet x={480} y={180} filter='blur(5px)' fill='url(#linear-gradient-2)' className="size-5" size={42} />
+                    <BsFileEarmarkSpreadsheet x={480} y={180} fill='url(#linear-gradient-2)' className="size-5" size={42} />
 
-                    <circle cx={18} cy={158} r={2} fill='#3c3c3a' />
-                    <circle cx={100} cy={158} r={2} fill='#3c3c3a' />
-                    <circle cx={18} cy={242} r={2} fill='#3c3c3a' />
-                    <circle cx={100} cy={242} r={2} fill='#3c3c3a' />
+                    <circle cx={458} cy={158} r={2} fill='#3c3c3a' />
+                    <circle cx={540} cy={158} r={2} fill='#3c3c3a' />
+                    <circle cx={458} cy={242} r={2} fill='#3c3c3a' />
+                    <circle cx={540} cy={242} r={2} fill='#3c3c3a' />
                 </g>
 
                 <g className='problems' stroke='url(#linear-gradient)' fill='none' strokeWidth={0.15}>
                     {/* Problem 1: Setup database */}
-                    <rect x={500} y={70} width={220} height={50} rx={10} fill='url(#gradient)' />
-                    <text x={545} y={100} fill='white' className={`${jetbrains_mono.className}`}>Setup database</text>
-                    <Database stroke='white' strokeWidth={0.75} size={18} x={515} y={85} />
+                    <rect x={900} y={40} width={220} height={50} rx={10} fill='url(#gradient)' />
+                    <motion.g
+                        initial="initial"
+                        animate="animate"
+                        variants={variants}
+                        onAnimationComplete={() => setResolved(true)}
+                    >
+                        <motion.text
+                            key={resolved ? "resolved" : "setup"}
+                            x={945}
+                            y={70}
+                            fill="white"
+                            className={jetbrains_mono.className}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            {resolved ? "Resolved" : "Setup Database"}
+                        </motion.text>
+                        <Database stroke='white' strokeWidth={0.75} size={18} x={915} y={55} />
+                    </motion.g>
+
 
                     {/* Problem 2: Domain setup */}
-                    <rect x={500} y={170} width={220} height={50} rx={10} fill='url(#gradient)' />
-                    <text x={545} y={200} fill='white' className={`${jetbrains_mono.className}`}>Domain setup</text>
-                    <Globe stroke='white' strokeWidth={0.75} size={18} x={515} y={185} />
+                    <rect x={900} y={110} width={220} height={50} rx={10} fill='url(#gradient)' />
+                    <text x={945} y={140} fill='white' className={`${jetbrains_mono.className}`}>Domain setup</text>
+                    <Globe stroke='white' strokeWidth={0.75} size={18} x={915} y={125} />
 
                     {/* Problem 3: Dashboard integration */}
-                    <rect x={500} y={240} width={250} height={50} rx={10} fill='url(#gradient)' />
-                    <text x={540} y={270} fill='white' className={`${jetbrains_mono.className}`}>Dashboard integration</text>
-                    <LayoutDashboard stroke='white' strokeWidth={0.75} size={18} x={515} y={255} />
+                    <rect x={900} y={180} width={260} height={50} rx={10} fill='url(#gradient)' />
+                    <text x={945} y={210} fill='white' className={`${jetbrains_mono.className}`}>Dashboard integration</text>
+                    <LayoutDashboard stroke='white' strokeWidth={0.75} size={18} x={915} y={195} />
 
                     {/* Problem 4: Coding */}
-                    <rect x={500} y={310} width={220} height={50} rx={10} fill='url(#gradient)' />
-                    <text x={580} y={340} fill='white' className={`${jetbrains_mono.className}`}>Coding</text>
-                    <Code stroke='white' strokeWidth={0.75} size={18} x={515} y={325} />
+                    <rect x={900} y={250} width={220} height={50} rx={10} fill='url(#gradient)' />
+                    <text x={945} y={280} fill='white' className={`${jetbrains_mono.className}`}>Coding</text>
+                    <Code stroke='white' strokeWidth={0.75} size={18} x={915} y={265} />
 
                     {/* Problem 5: User management */}
-                    <rect x={500} y={380} width={220} height={50} rx={10} fill='url(#gradient)' />
-                    <text x={535} y={410} fill='white' className={`${jetbrains_mono.className}`}>User management</text>
-                    <Users stroke='white' strokeWidth={0.75} size={18} x={515} y={395} />
+                    <rect x={900} y={320} width={220} height={50} rx={10} fill='url(#gradient)' />
+                    <text x={945} y={350} fill='white' className={`${jetbrains_mono.className}`}>User management</text>
+                    <Users stroke='white' strokeWidth={0.75} size={18} x={915} y={335} />
 
                     {/* Problem 6: Email integration */}
-                    <rect x={500} y={450} width={220} height={50} rx={10} fill='url(#gradient)' />
-                    <text x={535} y={480} fill='white' className={`${jetbrains_mono.className}`}>Email integration</text>
-                    <Mail stroke='white' strokeWidth={0.75} size={18} x={515} y={465} />
+                    <rect x={900} y={390} width={220} height={50} rx={10} fill='url(#gradient)' />
+                    <text x={945} y={420} fill='white' className={`${jetbrains_mono.className}`}>Email integration</text>
+                    <Mail stroke='white' strokeWidth={0.75} size={18} x={915} y={405} />
                 </g>
 
-                <g className="problem-connectors" stroke="white" fill="none" strokeWidth={0.4}>
-                    <path d="M 110 200 h 150 C 270 200, 272 180, 272 150 h 100" stroke="white" fill="none" strokeWidth={0.4} />
+                <g className="problem-connectors" stroke="white" fill="none" strokeWidth={0.1}>
+                    <path d="M 550 205 h 350" stroke="white" fill="none" />
+                    <path d="M 700 205 q 51 0 52 -40 q 1 -30 50 -30 h 99" />
+                    <path d="M 700 205 q 45 0 46 -60 v -50 q 0 -30 50 -28 h 105" />
+                    <path d="M 700 205 q 51 0 52 40 q 1 30 50 30 h 99" />
+                    <path d="M 700 205 q 45 0 46 60 v 50 q 0 30 50 28 h 105" />
+                    <path d='M 700 205 q 40 0 35 140 v 50 q 0 30 50 28 h 115' />
+
                 </g>
             </svg>
         </div>

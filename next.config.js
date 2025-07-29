@@ -6,13 +6,21 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const config = {
-    typescript:{
-        ignoreBuildErrors:true
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'pub-2115bce7adca49dba7376460f5f52e47.r2.dev',
+            },
+        ],
     },
-    eslint:{
-        ignoreDuringBuilds:true
+    typescript: {
+        ignoreBuildErrors: true
     },
-    reactStrictMode:true
+    eslint: {
+        ignoreDuringBuilds: true
+    },
+    reactStrictMode: true
 };
 
 export default config;

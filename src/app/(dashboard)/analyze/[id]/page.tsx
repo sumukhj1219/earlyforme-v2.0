@@ -5,12 +5,13 @@ interface Params {
     id: string
 }
 
-const page = (params: Params) => {
-    return (
-        <div className='m-5'>
-            <Analyze />
-        </div>
-    )
+const page = ({ params }: { params: Params }) => {
+  return (
+    <div className='m-5'>
+      <Analyze id={params.id} />
+    </div>
+  )
 }
 
 export default page
+
