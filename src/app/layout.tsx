@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react"
 import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeSwitchProvider } from "~/components/common/providers/theme-provider";
 import { WaitlistContextProvider } from "~/contexts/WaitlistContext";
+import { Toaster } from "sonner";
 
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
             <WaitlistContextProvider>
               <TRPCReactProvider>
                 {children}
+                <Toaster />
               </TRPCReactProvider>
             </WaitlistContextProvider>
           </ThemeSwitchProvider>

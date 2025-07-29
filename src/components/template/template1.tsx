@@ -39,15 +39,21 @@ const Template1 = (props?: Template) => {
   })
 
   const { waitlistDetails, template } = useWaitlist()
-  const {mutate:createJoinee, isPending} = api.joinee.createJoinee.useMutation({
-    onSuccess:()=>{
-      toast("Thankyou for joining")
-    }
-  })
+  const { mutate: createJoinee, isPending } = api.joinee.createJoinee.useMutation({
+    onSuccess: () => {
+      console.log("Success!");
+      toast("Thank you for joining");
+    },
+    onError: (err) => {
+      console.error("Join error:", err);
+      toast.error(err.message);
+    },
+  });
+
   const title = usePage()
   console.log(title)
   function onSubmit(values: z.infer<typeof formSchema>) {
-    createJoinee({waitlistName:props?.subdomain as string, email:values.email})
+    createJoinee({ waitlistName: props?.subdomain as string, email: values.email })
     console.log(values)
   }
   return (
