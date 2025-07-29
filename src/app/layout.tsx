@@ -19,7 +19,6 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

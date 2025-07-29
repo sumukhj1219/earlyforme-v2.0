@@ -86,7 +86,7 @@ model Waitlist {
     badgeColor      String?
     badgeSize       String?
 
-    waitlistName  String @unique
+    waitlistName String @unique
 
     header      String?
     headerColor String?
@@ -103,19 +103,28 @@ model Waitlist {
 
     status Status @default(Active)
 
-    userId String
-    user   User   @relation(fields: [userId], references: [id])
+    userId  String
+    user    User      @relation(fields: [userId], references: [id])
+    joinees Joinees[]
 }
 
-enum Status{
+enum Status {
     Active
     Inactive
     Deleted
 }
 
 model Assets {
-    id String @id @default(uuid())
-    url String
+    id     String @id @default(uuid())
+    url    String
     userId String
-    user User @relation(fields: [userId], references: [id])
+    user   User   @relation(fields: [userId], references: [id])
+}
+
+model Joinees {
+    id         String   @id @default(uuid())
+    email      String   @unique
+    joinedOn   DateTime @default(now())
+    waitlistId String
+    waitlist   Waitlist @relation(fields: [waitlistId], references: [id])
 }

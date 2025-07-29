@@ -9,7 +9,11 @@ export function usePage() {
     if (!pathname) return "Home";
 
     const segments = pathname.split("/").filter(Boolean);
-    const lastSegment = segments[segments.length - 1] || "home";
+    let lastSegment = segments[segments.length - 1] || "home";
+
+    if(lastSegment.length >= 32){
+      lastSegment = segments[segments.length - 2] || "/"
+    }
 
     const formatted =
       lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1).replace(/-/g, " ");

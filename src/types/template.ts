@@ -6,4 +6,5 @@ export interface Template extends WaitlistDetails{
     href?:string;
     component?:FC<Template>;
     userId?:string;
+    subdomain?:string;
 }

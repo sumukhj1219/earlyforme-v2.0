@@ -28,7 +28,7 @@ const Waitlists = () => {
                         <TableHeader className="bg-muted/50">
                             <TableRow>
                                 <TableHead className="w-[300px]">Id</TableHead>
-                                <TableHead className="w-[100px]">Template Id</TableHead>
+                                <TableHead className="w-[100px]">Analytics</TableHead>
                                 <TableHead>Name</TableHead>
                                 <TableHead className="">Url</TableHead>
                                 <TableHead className="">Status</TableHead>
@@ -44,7 +44,11 @@ const Waitlists = () => {
                                     return (
                                         <TableRow key={waitlist.id} className="text-xs  font-medium">
                                             <TableCell className='text-secondary/30'>{waitlist.id}</TableCell>
-                                            <TableCell>Template-{waitlist.templateId}</TableCell>
+                                            <TableCell>
+                                                <Link  href={`/analyze/${waitlist.id}`} className='underline p-0.5 bg-indigo-500/20 text-sky-200 rounded-md'>
+                                                    View Analytics
+                                                </Link>
+                                            </TableCell>
                                             <TableCell>{waitlist.waitlistName}</TableCell>
                                             <TableCell className=''>
                                                 <Link className='underline p-0.5 bg-sky-500/20 text-sky-200 rounded-md' href={`https://${waitlist.waitlistName}.earlyfor.me`}>

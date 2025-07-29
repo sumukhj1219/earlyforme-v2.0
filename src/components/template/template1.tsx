@@ -6,17 +6,57 @@ import { Input } from '~/components/ui/input'
 import { useWaitlist } from '~/contexts/WaitlistContext'
 import type { Template } from '~/types/template'
 import { getResponsiveSize } from '~/utils/getResponsiveSize'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/components/ui/form"
+import { Button } from '../ui/button'
+import { api } from '~/trpc/react'
+import { toast } from 'sonner'
+import { usePage } from '~/hooks/use-page'
 
-const Template1 = (props?:Template) => {
+const formSchema = z.object({
+  email: z.string().min(2, {
+    message: "Email is required to join waitlist.",
+  }),
+})
+
+
+const Template1 = (props?: Template) => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  })
+
   const { waitlistDetails, template } = useWaitlist()
-
+  const {mutate:createJoinee, isPending} = api.joinee.createJoinee.useMutation({
+    onSuccess:()=>{
+      toast("Thankyou for joining")
+    }
+  })
+  const title = usePage()
+  console.log(title)
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    createJoinee({waitlistName:props?.subdomain as string, email:values.email})
+    console.log(values)
+  }
   return (
     <div
-      className={`${props?.backgroundColor ||waitlistDetails?.backgroundColor || 'bg-neutral-950'
+      className={`${props?.backgroundColor || waitlistDetails?.backgroundColor || 'bg-neutral-950'
         } min-h-screen flex items-center justify-center px-4 py-10`}
     >
       <div className="w-full max-w-6xl flex flex-col gap-y-6 items-center justify-center text-center">
-        <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""}  />
+        <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""} />
 
         <Badge
           variant="outline"
@@ -42,10 +82,26 @@ const Template1 = (props?:Template) => {
         </h2>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-2 w-full max-w-md">
-          <Input placeholder="Email" className="w-full" />
-          <button className={`${props?.buttonBackground || waitlistDetails?.buttonBackground || "bg-lime-500 "} sm:w-32 p-2 text-neutral-950 text-sm rounded hover:${props?.backgroundColor || waitlistDetails?.backgroundColor}/50 transition`}>
-            {(props?.buttonPlaceholder || waitlistDetails?.buttonPlaceholder) ?? 'Join Now'}
-          </button>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="gap-x-2 flex">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="johndoe@gmail.com" className='w-full' {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button disabled={title !== "Home"} className={`${props?.buttonBackground || waitlistDetails?.buttonBackground || "bg-lime-500 "} sm:w-32 p-2 text-neutral-950 text-sm rounded hover:${props?.backgroundColor || waitlistDetails?.backgroundColor}/50 transition`}>
+                {(props?.buttonPlaceholder || waitlistDetails?.buttonPlaceholder) ?? 'Join Now'}
+              </Button>
+            </form>
+          </Form>
+          {/* <Input placeholder="Email" className="w-full" /> */}
         </div>
 
         <span className="text-neutral-500 text-sm">+12,000 users already on the waitlist</span>
@@ -54,7 +110,7 @@ const Template1 = (props?:Template) => {
           <video
             className="w-full h-full object-cover rounded-lg"
             controls
-            src={(props?.video || waitlistDetails?.video) ?? '/video.mp4'} 
+            src={(props?.video || waitlistDetails?.video) ?? '/video.mp4'}
           >
             Your browser does not support the video tag.
           </video>

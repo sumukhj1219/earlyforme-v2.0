@@ -21,7 +21,7 @@ export function SubDomain({ subdomain }: { subdomain: string }) {
     }
     return (
         <div className="">
-            <TemplateComponent {...data.data}  />
+            <TemplateComponent {...{ ...data.data, subdomain }}   />
         </div>
     );
 }
