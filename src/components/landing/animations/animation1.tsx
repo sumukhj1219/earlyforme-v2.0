@@ -16,7 +16,7 @@ const Animation1 = () => {
 
 
     const animate = () => {
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({repeat:-1});
 
         tl.fromTo("#setup-text", { opacity: 1 }, { opacity: 1, y: 0, duration: 1, ease: "power4.inOut" }, 0);
         tl.to("#setup-text", { opacity: 0, y: -10, duration: 1, ease: "power4.inOut", onComplete: () => setResolved1(true) }, 2);
@@ -41,6 +41,15 @@ const Animation1 = () => {
         tl.fromTo("#email-integration", { opacity: 1 }, { opacity: 1, y: 0, duration: 1, ease: "power4.inOut" }, 0);
         tl.to("#email-integration", { opacity: 0, y: -10, duration: 1, ease: "power4.inOut", onComplete: () => setResolved6(true) }, 9);
         tl.to("#email-integration", { opacity: 1, y: 0, duration: 1, ease: "power4.inOut" }, 10);
+
+        tl.call(() => {
+            setResolved1(false);
+            setResolved2(false);
+            setResolved3(false);
+            setResolved4(false);
+            setResolved5(false);
+            setResolved6(false);
+        }, [], "+=1");
     };
 
 

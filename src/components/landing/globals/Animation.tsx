@@ -22,9 +22,9 @@ const Animation = () => {
         }
       </svg>
 
-      <div className="w-full px-6 border-y border-dashed py-12 text-center bg-background">
-        <h2 className={`md:text-3xl text-xl font-bold ${jetbrains_mono.className} mb-2`}>Eliminate all your waitlist problems.</h2>
-        <p className={`max-w-2xl text-sm md:text-md mx-auto text-primary ${jetbrains_mono.className}`}>
+      <div className="w-full px-6 border-y border-dashed py-6 text-center bg-background">
+        <h2 className={`md:text-3xl text-md font-bold ${jetbrains_mono.className} mb-2`}>Eliminate all your waitlist problems.</h2>
+        <p className={`max-w-2xl text-xs md:text-md mx-auto text-primary ${jetbrains_mono.className}`}>
           Earlyfor.me helps you to setup your waitlist with in few clicks.
         </p>
 

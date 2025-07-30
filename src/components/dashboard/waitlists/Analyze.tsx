@@ -23,6 +23,9 @@ const Analyze = ({ id }: Props) => {
     const { data: totalJoinees } = api.joinee.totalJoinees.useQuery({
         waitlistId: id
     })
+    const { data:stats } = api.joinee.getStats.useQuery({
+        waitlistId: id
+    })
     return (
         <div className='flex flex-col max-w-5xl w-full px-4 md:px-0 mx-auto'>
             <div className='flex flex-col md:flex-row md:items-center justify-between gap-y-2 w-full mb-4'>
@@ -79,15 +82,17 @@ const Analyze = ({ id }: Props) => {
 
                 <div className='p-4 rounded-xl bg-sidebar border border-border flex flex-col gap-2 shadow-sm'>
                     <div className='flex items-center justify-between'>
-                        <span className='text-muted-foreground text-sm'>7-day Growth</span>
+                        <span className='text-muted-foreground text-sm'>Monthly Growth</span>
                         <span className='rounded p-1 bg-gradient-to-br from-primary to-primary/50'>
                             <TrendingUp className='w-3 h-3 text-primary' stroke='white' />
                         </span>
                     </div>
-                    <span className='text-3xl font-semibold'>+0%</span>
+                    <span className='text-3xl font-semibold'>
+                        {stats?.previousMonth as number /( stats?.currentMonth || 0)}
+                    </span>
                 </div>
             </div>
-            <AreaChartStats />
+            <AreaChartStats id={id} />
         </div>
     )
 }

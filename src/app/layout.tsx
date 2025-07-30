@@ -25,7 +25,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body>
+      <body className=" selection:bg-orange-600">
         <SessionProvider>
           <ThemeSwitchProvider>
             <WaitlistContextProvider>

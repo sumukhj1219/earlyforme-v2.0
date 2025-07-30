@@ -17,47 +17,33 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "~/components/ui/chart"
+import { api } from "~/trpc/react"
 
-export const description = "An area chart with axes"
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+export function AreaChartStats({ id }: { id: string }) {
+  const { data: chartData, isLoading } = api.joinee.getMonthlyStats.useQuery({ waitlistId: id });
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
-  },
-} satisfies ChartConfig
+  const chartConfig = {
+    count: {
+      label: "Joinees",
+      color: "var(--chart-1)",
+    },
+  } satisfies ChartConfig;
 
-export function AreaChartStats() {
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <Card className="mt-10">
       <CardHeader>
-        {/* <CardTitle>Area Chart - Axes</CardTitle> */}
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing total joinees for the last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <AreaChart
-            accessibilityLayer
             data={chartData}
-            margin={{
-              left: -20,
-              right: 12,
-            }}
+            margin={{ left: -20, right: 12 }}
           >
             <CartesianGrid vertical={false} />
             <XAxis
@@ -75,36 +61,22 @@ export function AreaChartStats() {
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Area
-              dataKey="mobile"
-              type="natural"
-              fill="var(--color-mobile)"
+              dataKey="count"
+              type="monotone"
+              fill="var(--color-count)"
               fillOpacity={0.4}
-              stroke="var(--color-mobile)"
-              stackId="a"
-            />
-            <Area
-              dataKey="desktop"
-              type="natural"
-              fill="var(--color-desktop)"
-              fillOpacity={0.4}
-              stroke="var(--color-desktop)"
-              stackId="a"
+              stroke="var(--color-count)"
+              strokeWidth={2}
             />
           </AreaChart>
         </ChartContainer>
       </CardContent>
       <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 leading-none font-medium">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="text-muted-foreground flex items-center gap-2 leading-none">
-              January - June 2024
-            </div>
-          </div>
+        <div className="text-sm text-muted-foreground">
+          {chartData?.[0]?.month} - {chartData?.[chartData.length - 1]?.month} 2024
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
+
