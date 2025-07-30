@@ -165,3 +165,119 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes path1-animation {
+  0% {
+    offset-distance: 0%;
+  }
+
+  20% {
+    offset-distance: 60%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+.path-1 {
+  offset-path: path("M 550 205 h 150 q 45 0 46 -60 v -50 q 0 -30 50 -28 h 110");
+  animation: path1-animation;
+  animation-timing-function: cubic-bezier(.75, -.01, 0, .99);
+  animation-duration: 3s;
+  offset-anchor: 32.5px 0;
+  animation-iteration-count: infinite;
+}
+
+@keyframes path2-animation {
+  0% {
+    offset-distance: 0%;
+  }
+
+  20% {
+    offset-distance: 60%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+.path-2 {
+  offset-path: path("M 550 205 h 150 q 51 0 52 -40 q 1 -30 50 -30 h 110");
+  animation: path1-animation;
+  animation-timing-function: cubic-bezier(.75, -.01, 0, .99);
+  animation-duration: 4s;
+  offset-anchor: 32.5px 0;
+  animation-iteration-count: infinite;
+}
+
+@keyframes path3-animation {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+.path-3 {
+  offset-path: path("M 550 205 h 350");
+  animation: path1-animation;
+  animation-timing-function: cubic-bezier(.75, -.01, 0, .99);
+  animation-duration: 6s;
+  offset-anchor: 32.5px 0;
+  animation-iteration-count: infinite;
+}
+
+@keyframes path4-animation {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+.path-4 {
+  offset-path: path("M 550 205 h 150 q 51 0 52 40 q 1 30 50 30 h 99");
+  animation: path4-animation;
+  animation-timing-function: cubic-bezier(.75, -.01, 0, .99);
+  animation-duration: 8s;
+  offset-anchor: 32.5px 0;
+  animation-iteration-count: infinite;
+}
+
+@keyframes path5-animation {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+.path-5 {
+  offset-path: path("M 550 205 h 150 q 45 0 46 60 v 50 q 0 30 50 28 h 105");
+  animation: path5-animation;
+  animation-timing-function: cubic-bezier(.75, -.01, 0, .99);
+  animation-duration: 10s;
+  offset-anchor: 32.5px 0;
+  animation-iteration-count: infinite;
+}
+
+@keyframes path6-animation {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+.path-6 {
+  offset-path: path("M 550 205 h 150 q 40 0 35 140 v 50 q 0 30 50 28 h 115");
+  animation: path6-animation;
+  animation-timing-function: cubic-bezier(.75, -.01, 0, .99);
+  animation-duration: 12s;
+  offset-anchor: 32.5px 0;
+  animation-iteration-count: infinite;
+}
