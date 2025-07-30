@@ -11,11 +11,15 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "~/components/ui/pagination";
+import { useWaitlist } from "~/contexts/WaitlistContext";
+import type { Template } from "~/types/template";
+import type { WaitlistDetails } from "~/types/waitlist";
 
 const NoSSRWrapper = dynamic(
   () =>
     Promise.resolve(() => {
       const [search, setSearch] = useState("");
+      const {setTemplate, setWaitlistDetails} = useWaitlist()
       const [page, setPage] = useState(1);
       const pageSize = 48;
 
@@ -42,19 +46,24 @@ const NoSSRWrapper = dynamic(
         <div className="flex flex-col items-center justify-center w-full">
           <Input
             placeholder="Search for icons..."
-            className="w-80 my-4"
+            className="md:w-80 w-56 my-4"
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
-              setPage(1); // Reset to page 1 on new search
+              setPage(1);
             }}
           />
 
-          <div className="grid grid-cols-6 gap-4 w-full max-w-screen-xl px-4">
+          <div className="grid grid-cols-5 md:grid-cols-6 gap-4 w-full max-w-screen-xl px-4">
             {paginatedIcons.map((name) => {
               const LucideIcon = Icons[name as keyof typeof Icons];
               return (
-                <div key={name} className="flex flex-col items-center text-center">
+                <div onClick={()=>{
+                  setTemplate((prev)=>({...prev as Template, waitlistIcon:name}));
+                  setWaitlistDetails((prev)=>({...prev as WaitlistDetails, waitlistIcon:name}));
+                }
+              } 
+                key={name} className="flex flex-col items-center text-center">
                   <LucideIcon className="w-8 h-8 p-1.5 bg-muted rounded" />
                 </div>
               );

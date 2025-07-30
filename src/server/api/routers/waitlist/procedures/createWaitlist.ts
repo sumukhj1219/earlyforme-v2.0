@@ -7,6 +7,8 @@ const payload = z.object({
     templateId: z.number(),
     href: z.string(),
     waitlistLogo: z.string().optional(),
+    waitlistIcon: z.string().optional(),
+
     backgroundColor: z.string().optional(),
 
     badge: z.string().optional(),
@@ -40,6 +42,8 @@ export const createWaitlist = protectedProcedure
         update: {
           href: input.href,
           waitlistLogo: input.waitlistLogo,
+          waitlistIcon: input.waitlistIcon,
+
           backgroundColor: input.backgroundColor,
           templateId: input.templateId,
 
@@ -68,6 +72,8 @@ export const createWaitlist = protectedProcedure
           templateId: input.templateId,
           href: input.href,
           waitlistLogo: input.waitlistLogo,
+          waitlistIcon: input.waitlistIcon,
+
           backgroundColor: input.backgroundColor,
 
           badge: input.badge,

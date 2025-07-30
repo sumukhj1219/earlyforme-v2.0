@@ -22,7 +22,9 @@ import {
 import { uploadImage } from "~/utils/uploadImage"
 import dynamic from "next/dynamic"
 import type { WaitlistDetails } from "~/types/waitlist"
-const Lucide = dynamic(()=>import("~/components/packages/lucide-icons/lucide"), {ssr:false})
+import ImageLogoSize from "~/components/common/imageLogoSize/ImageLogoSize"
+
+const Lucide = dynamic(() => import("~/components/packages/lucide-icons/lucide"), { ssr: false })
 
 type Props = {
   viewMode: "Both" | "Form" | "Preview"
@@ -81,7 +83,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                   />
                 )}
               </label>
-              
+
               <div
                 id="logo"
                 className="w-full max-w-[300px] md:h-48 h-36 p-2 border border-dashed border-muted-foreground rounded bg-secondary/10 flex flex-col items-center justify-center"
@@ -92,35 +94,41 @@ const CreateWaitlist = ({ viewMode }: Props) => {
             </div>
 
             <div className="flex flex-col w-full">
-              <Label htmlFor="waitlistName" className="text-xs flex items-center">
-                Waitlist Name
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Info className="w-3 h-3" />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Domain has to be assigned use unique name</p>
-                  </TooltipContent>
-                </Tooltip>
-              </Label>
-              <Input
-                type="text"
-                disabled={template?.userId ? true : false}
-                value={waitlistDetails?.waitlistName || template?.waitlistName || ""}
-                onChange={(e) => {
-                  setWaitlistDetails((prev) => ({
-                    ...prev as WaitlistDetails,
-                    waitlistName: e.target.value,
-                  }));
-                  setTemplate((prev) => ({
-                    ...prev as Template,
-                    waitlistName: e.target.value,
-                  }));
-                }
-                }
-                placeholder="Enter a unique waitlist name"
-                className=" rounded shadow-none mt-1"
-              />
+              <div className="grid grid-cols-2 gap-x-1">
+                <div className="flex flex-col ">
+                  <Label htmlFor="waitlistName" className="text-xs flex items-center">
+                    Waitlist Name
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-3 h-3" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Domain has to be assigned use unique name</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </Label>
+                  <Input
+                    type="text"
+                    disabled={template?.userId ? true : false}
+                    value={waitlistDetails?.waitlistName || template?.waitlistName || ""}
+                    onChange={(e) => {
+                      setWaitlistDetails((prev) => ({
+                        ...prev as WaitlistDetails,
+                        waitlistName: e.target.value,
+                      }));
+                      setTemplate((prev) => ({
+                        ...prev as Template,
+                        waitlistName: e.target.value,
+                      }));
+                    }
+                    }
+                    placeholder="Enter a unique waitlist name"
+                    className=" rounded shadow-none mt-1"
+                  />
+                </div>
+                <ImageLogoSize objectKey="waitlistLogoIconSize" />
+              </div>
+
 
 
               <Label className="text-xs mt-5">Change Background</Label>

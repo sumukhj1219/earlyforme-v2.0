@@ -9,6 +9,7 @@ import { getResponsiveSize } from '~/utils/getResponsiveSize'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import * as Icons from "lucide-react"
 import {
   Form,
   FormControl,
@@ -51,7 +52,8 @@ const Template1 = (props?: Template) => {
   });
 
   const title = usePage()
-  console.log(title)
+  const iconName = waitlistDetails?.waitlistIcon || props?.waitlistIcon
+  const LucideIcon = Icons[iconName as keyof typeof Icons];
   function onSubmit(values: z.infer<typeof formSchema>) {
     createJoinee({ waitlistName: props?.subdomain as string, email: values.email })
     console.log(values)
@@ -62,8 +64,11 @@ const Template1 = (props?: Template) => {
         } min-h-screen flex items-center justify-center px-4 py-10`}
     >
       <div className="w-full max-w-6xl flex flex-col gap-y-6 items-center justify-center text-center">
-        <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""} />
+        {(props?.waitlistLogo || waitlistDetails?.waitlistLogo) && <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""} />}
 
+        {
+        (props?.waitlistIcon || waitlistDetails?.waitlistIcon) && <LucideIcon className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-12"} p-1.5 bg-muted rounded`} />
+        }
         <Badge
           variant="outline"
           className={`flex items-center ${props?.badgeColor || waitlistDetails?.badgeColor} justify-center gap-x-2 ${props?.badgeSize || waitlistDetails?.badgeSize || 'text-sm'

@@ -37,12 +37,12 @@ const TemplateTrigger = () => {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Choose any template</DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogDescription className="">
               Select a template from the list below.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="flex flex-col items-center mt-4">
+          <div className="grid md:grid-cols-4 grid-cols-3 items-center">
             {templates.map((t) => (
               <div
                 key={t.templateId}
@@ -56,8 +56,8 @@ const TemplateTrigger = () => {
                 <Image
                   src={t.href as string}
                   alt={`Template ${t.templateId}`}
-                  width={300}
-                  height={200}
+                  width={120}
+                  height={120}
                   className="rounded-md"
                 />
               </div>

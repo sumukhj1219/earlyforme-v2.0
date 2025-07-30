@@ -3,6 +3,9 @@ import type { IconNode } from "lucide-react";
 
 export type WaitlistDetails = {
   waitlistLogo?: string;
+  waitlistIcon?: string;
+  waitlistLogoIconSize?: string;
+
   backgroundColor?: string;
   templateId?: number;
   badge?: string;

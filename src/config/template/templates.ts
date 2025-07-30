@@ -9,6 +9,7 @@ export const templates:Template[] = [
         component: Template1,
         backgroundColor:'bg-neutral-900',
         waitlistLogo: "",
+        waitlistIcon: "",
         badge: 'Available in early 2025',
         badgeSize:'text-xs',
         badgeColor:'text-neutral-50',

@@ -81,6 +81,8 @@ model Waitlist {
     templateId      Int
     href            String
     waitlistLogo    String?
+    waitlistIcon    String?
+
     backgroundColor String?
     badge           String?
     badgeColor      String?
