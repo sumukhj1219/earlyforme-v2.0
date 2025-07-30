@@ -21,7 +21,7 @@ const Lucide = () => {
                 <SheetTrigger>
                     <Landmark className="p-1 w-7 h-7 rounded bg-gradient-to-br from-primary to-primary/50" stroke="white" />
                 </SheetTrigger>
-                <SheetContent>
+                <SheetContent className='overflow-y-scroll'>
                     <SheetHeader>
                         <SheetTitle className={`${instrument_serif.className} antialiased md:text-3xl`}>
                             Lucide Icons
@@ -29,7 +29,7 @@ const Lucide = () => {
                         <SheetDescription>
                             Import lucide icons into your waitlist within few clicks.
                         </SheetDescription>
-                            {/* <AllIcons /> */}
+                            <AllIcons />
                     </SheetHeader>
                 </SheetContent>
             </Sheet>
