@@ -13,7 +13,7 @@ export const siteConfig = {
   title: 'Build your waitlists within few clicks.',
   description: 'The Fastest Way to Build and Launch Waitlists.',
   url: env.NEXT_PUBLIC_URL || "http://localhost:3000",
-  ogImage: '/meta/og.png',
+  ogImage: '/meta/main.png',
   author: {
     name: 'Sumukh',
     twitter: '@iam_enginner',
@@ -49,7 +49,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'typescript',
       'webdevelopment',
     ],
-    ogImage: '/meta/main.png',
+    ogImage: '/meta/logo.png',
     twitterCard: 'summary_large_image'
   },
 
@@ -184,7 +184,7 @@ export function generateMetadata(pathname: string) {
       siteName: siteConfig.title,
       images: [
         {
-          url: pageMeta.ogImage || siteConfig.ogImage,
+          url: siteConfig.ogImage || pageMeta.ogImage,
           width: 1200,
           height: 630,
           alt: pageMeta.title,
