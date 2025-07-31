@@ -16,6 +16,8 @@ export const env = createEnv({
     R2_ACCOUNTID:z.string(),
     R2_ACCESS_KEY:z.string(),
     R2_SECRET:z.string(),
+    // @ts-ignore
+    NEXT_PUBLIC_URL:z.string(),
     DATABASE_URL: z.string().url(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
@@ -42,6 +44,8 @@ export const env = createEnv({
     R2_ACCOUNTID: process.env.R2_ACCOUNTID,
     R2_ACCESS_KEY:process.env.R2_ACCESS_KEY,
     R2_SECRET:process.env.R2_SECRET,
+    // @ts-ignore
+    NEXT_PUBLIC_URL:process.env.NEXT_PUBLIC_URL,
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
   },

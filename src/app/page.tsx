@@ -1,6 +1,10 @@
 import React from 'react'
 import Landing from '~/components/landing/landing'
-import Template1 from '~/components/template/template1'
+import { generateMetadata as createMetadata } from '~/components/common/meta/meta'
+
+export const generateMetadata = () => {
+  return createMetadata('/')
+}
 
 const page = () => {
   return (
