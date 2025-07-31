@@ -176,8 +176,7 @@ export function getPageMetadata(pathname: string): PageMeta {
 }
 
 export function generateMetadata(pathname: string) {
-  const pageMeta = getPageMetadata(pathname)
-  const imageUrl = new URL(pageMeta.ogImage || siteConfig.ogImage, siteConfig.url).toString();
+  const pageMeta = getPageMetadata(pathname);
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -194,7 +193,7 @@ export function generateMetadata(pathname: string) {
       siteName: siteConfig.title,
       images: [
         {
-          url: imageUrl,
+          url: pageMeta.ogImage || siteConfig.ogImage,
           width: 1200,
           height: 630,
           alt: pageMeta.title,
@@ -206,7 +205,7 @@ export function generateMetadata(pathname: string) {
       title: pageMeta.title,
       description: pageMeta.description,
       creator: siteConfig.author.twitter,
-      images: [imageUrl],
+      images: [pageMeta.ogImage || siteConfig.ogImage],
     },
     robots: {
       index: true,
@@ -222,7 +221,7 @@ export function generateMetadata(pathname: string) {
     alternates: {
       canonical: `${siteConfig.url}${pathname}`,
     },
-  }
+  };
 
 }
 
