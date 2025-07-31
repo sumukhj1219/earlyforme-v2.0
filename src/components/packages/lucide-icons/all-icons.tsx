@@ -64,7 +64,7 @@ const NoSSRWrapper = dynamic(
                 }
               } 
                 key={name} className="flex flex-col items-center text-center">
-                  <LucideIcon className="w-8 h-8 p-1.5 bg-muted rounded" />
+                  <LucideIcon className="w-8 h-8 p-1.5  " />
                 </div>
               );
             })}

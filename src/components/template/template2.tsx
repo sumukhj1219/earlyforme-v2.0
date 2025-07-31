@@ -95,9 +95,10 @@ const Template2 = (props?: Template) => {
 
         <span className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-t border-neutral-600 rounded-full">
           {
-            (props?.waitlistIcon || waitlistDetails?.waitlistIcon) && <LucideIcon className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-14"} p-3 bg-muted`} />
+            (props?.waitlistIcon || waitlistDetails?.waitlistIcon) ? (<LucideIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-14"} p-3 `} />) : (
+              <BookmarkXIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className="size-14 p-3" />
+            )
           }
-          <BookmarkXIcon className="size-14 p-3" />
         </span>
 
         <svg viewBox="0 0 200 20" className="w-[30vw] sm:w-[150px] h-5 flex-shrink-0">

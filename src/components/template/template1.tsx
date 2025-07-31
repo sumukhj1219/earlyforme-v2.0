@@ -68,7 +68,7 @@ const Template1 = (props?: Template) => {
         {(props?.waitlistLogo || waitlistDetails?.waitlistLogo) && <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""} />}
 
         {
-        (props?.waitlistIcon || waitlistDetails?.waitlistIcon) && <LucideIcon className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-12"} p-1.5 bg-muted rounded`} />
+        (props?.waitlistIcon || waitlistDetails?.waitlistIcon) && <LucideIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-12"} p-1.5 bg-muted rounded`} />
         }
         <Badge
           variant="outline"

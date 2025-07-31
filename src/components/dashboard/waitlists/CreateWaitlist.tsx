@@ -23,6 +23,7 @@ import { uploadImage } from "~/utils/uploadImage"
 import dynamic from "next/dynamic"
 import type { WaitlistDetails } from "~/types/waitlist"
 import ImageLogoSize from "~/components/common/imageLogoSize/ImageLogoSize"
+import StrokeColorChanger from "~/components/common/colorChanger/strokeColorChanger"
 
 const Lucide = dynamic(() => import("~/components/packages/lucide-icons/lucide"), { ssr: false })
 
@@ -158,6 +159,12 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                   className=" rounded shadow-none"
                 />
                 <ColorChanger type="backgroundColor" preset={tailwindBgColors} />
+              </div>
+
+
+              <Label className="text-xs mt-5">Change Icon stroke</Label>
+              <div className="flex sm:items-center">
+                <StrokeColorChanger iconStroke="iconStroke" />
               </div>
             </div>
           </AccordionContent>

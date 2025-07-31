@@ -47,6 +47,25 @@ export const tailwindTextColors = [
 ];
 
 
-export const gradientBackgroundColors = [
-  
+export const strokeColors = [
+  "blue", "black", "white", "lime", "lightblue",
+  "pink", "green", "yellow", "gray", "brown",
+  "indigo", "violet", "orange"
 ]
+
+export const strokeColorClassMap: Record<string, string> = {
+  blue: "bg-blue-500",
+  black: "bg-black",
+  white: "bg-white",
+  lime: "bg-lime-500",
+  lightblue: "bg-sky-300", 
+  pink: "bg-pink-500",
+  green: "bg-green-500",
+  yellow: "bg-yellow-400",
+  gray: "bg-gray-500",
+  brown: "bg-orange-900", 
+  indigo: "bg-indigo-500",
+  violet: "bg-violet-500",
+  orange: "bg-orange-500"
+}
+

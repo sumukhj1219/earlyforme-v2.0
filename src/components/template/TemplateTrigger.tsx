@@ -42,24 +42,25 @@ const TemplateTrigger = () => {
             </DialogDescription>
           </DialogHeader>
 
-          <div className="grid md:grid-cols-4 grid-cols-3 items-center">
+          <div className="grid md:grid-cols-4 grid-cols-3 gap-x-2 items-center">
             {templates.map((t) => (
               <div
                 key={t.templateId}
                 onClick={() => setTemplate(() => t)}
-                className={`mt-5 rounded-md overflow-hidden border-2 transition cursor-pointer ${
-                  template?.templateId === t.templateId
-                    ? "border-primary"
-                    : "border-transparent hover:border-neutral-700"
-                }`}
+                className={`mt-5 rounded-md overflow-hidden border-2 transition cursor-pointer ${template?.templateId === t.templateId
+                  ? "border-primary"
+                  : "border-transparent hover:border-neutral-700"
+                  }`}
               >
-                <Image
-                  src={t.href as string}
-                  alt={`Template ${t.templateId}`}
-                  width={120}
-                  height={120}
-                  className="rounded-md"
-                />
+                <div className="w-28 h-28 relative shadow-md hover:shadow-lg rounded-md overflow-hidden transition-all duration-300 hover:brightness-105 hover:scale-105">
+                  <Image
+                    src={t.href as string}
+                    alt={`Template ${t.templateId}`}
+                    fill
+                    className="rounded-md object-cover"
+                    priority
+                  />
+                </div>
               </div>
             ))}
           </div>
