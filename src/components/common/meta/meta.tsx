@@ -163,16 +163,7 @@ export const pageMetadata: Record<string, PageMeta> = {
 }
 
 export function getPageMetadata(pathname: string): PageMeta {
-  if (pageMetadata[pathname]) return pageMetadata[pathname]
-
-  for (const key in pageMetadata) {
-    if (key.includes('*')) {
-      const regex = new RegExp('^' + key.replace('*', '.*') + '$')
-      if (regex.test(pathname)) return pageMetadata[key] as PageMeta
-    }
-  }
-
-  return pageMetadata['/'] as PageMeta
+  return pageMetadata[pathname] || pageMetadata['/'];
 }
 
 export function generateMetadata(pathname: string) {
