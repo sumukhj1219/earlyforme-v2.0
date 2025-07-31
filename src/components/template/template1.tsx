@@ -7,7 +7,6 @@ import { useWaitlist } from '~/contexts/WaitlistContext'
 import type { Template } from '~/types/template'
 import { getResponsiveSize } from '~/utils/getResponsiveSize'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 import { z } from "zod"
 import * as Icons from "lucide-react"
 import {
@@ -23,6 +22,7 @@ import { Button } from '../ui/button'
 import { api } from '~/trpc/react'
 import { toast } from 'sonner'
 import { usePage } from '~/hooks/use-page'
+import { useForm } from 'react-hook-form'
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -54,6 +54,7 @@ const Template1 = (props?: Template) => {
   const title = usePage()
   const iconName = waitlistDetails?.waitlistIcon || props?.waitlistIcon
   const LucideIcon = Icons[iconName as keyof typeof Icons];
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     createJoinee({ waitlistName: props?.subdomain as string, email: values.email })
     console.log(values)
@@ -112,7 +113,6 @@ const Template1 = (props?: Template) => {
               </Button>
             </form>
           </Form>
-          {/* <Input placeholder="Email" className="w-full" /> */}
         </div>
 
         <span className="text-neutral-500 text-sm">+12,000 users already on the waitlist</span>
