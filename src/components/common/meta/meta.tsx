@@ -13,7 +13,7 @@ export const siteConfig = {
     title: 'Build your waitlists within few clicks.',
     description: 'The Fastest Way to Build and Launch Waitlists.',
     url: env.NEXT_PUBLIC_URL || "http://localhost:3000",
-    ogImage: '/meta/logo.png',
+    ogImage: '/meta/og.png',
     author: {
         name: 'Sumukh',
         twitter: '@iam_enginner',
@@ -49,7 +49,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'typescript',
             'webdevelopment',
         ],
-        ogImage: '/meta/logo.png',
+        ogImage: '/meta/og.png',
         twitterCard: 'summary_large_image'
     },
 
@@ -69,7 +69,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'typescript',
             'webdevelopment',
         ],
-        ogImage: '/meta/logo.png',
+        ogImage: '/meta/og.png',
         twitterCard: 'summary'
     },
 
@@ -91,7 +91,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'typescript',
             'webdevelopment',
         ],
-        ogImage: '/meta/logo.png',
+        ogImage: '/meta/og.png',
         twitterCard: 'summary'
     },
 
@@ -114,7 +114,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'typescript',
             'webdevelopment',
         ],
-        ogImage: '/meta/logo.png',
+        ogImage: '/meta/og.png',
         twitterCard: 'summary'
     },
 
@@ -137,7 +137,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'typescript',
             'webdevelopment',
         ],
-        ogImage: '/meta/logo.png',
+        ogImage: '/meta/og.png',
         twitterCard: 'summary'
     },
 
@@ -157,7 +157,7 @@ export const pageMetadata: Record<string, PageMeta> = {
             'typescript',
             'webdevelopment',
         ],
-        ogImage: '/meta/logo.png',
+        ogImage: '/meta/og.png',
         twitterCard: 'summary'
     }
 }
