@@ -7,13 +7,10 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeSwitchProvider } from "~/components/common/providers/theme-provider";
 import { WaitlistContextProvider } from "~/contexts/WaitlistContext";
 import { Toaster } from "sonner";
+import { generateMetadata } from "~/components/common/meta/meta";
 
 
-export const metadata: Metadata = {
-  title: "Earlyfor.me",
-  description: "The Fastest Way to Build and Launch Waitlists.",
-  icons: [{ rel: "icon", url: "/meta/logo.png" }],
-};
+export const metadata = generateMetadata("/")
 
 const geist = Geist({
   subsets: ["latin"],
