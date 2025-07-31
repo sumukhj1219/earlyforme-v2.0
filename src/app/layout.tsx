@@ -7,10 +7,35 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeSwitchProvider } from "~/components/common/providers/theme-provider";
 import { WaitlistContextProvider } from "~/contexts/WaitlistContext";
 import { Toaster } from "sonner";
-import { generateMetadata } from "~/components/common/meta/meta";
 
+export const metadata: Metadata = {
+  title: "Earlyfor.me",
+  description: "The Fastest Way to Build and Launch Waitlists.",
+  icons: [{ rel: "icon", url: "/meta/logo.png" }],
+  openGraph: {
+    title: "Earlyfor.me – Build your waitlists within few clicks.",
+    description: "The Fastest Way to Build and Launch Waitlists.",
+    url: "https://www.earlyfor.me",
+    siteName: "Earlyfor.me",
+    images: [
+      {
+        url: "https://www.earlyfor.me/meta/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Earlyfor.me – Build your waitlists within few clicks.",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Earlyfor.me – Build your waitlists within few clicks.",
+    description: "The Fastest Way to Build and Launch Waitlists.",
+    images: ["https://www.earlyfor.me/meta/og.png"],
+    site: "@earlyforme", // optional if you have a Twitter handle
+  },
+};
 
-export const metadata = generateMetadata("/")
 
 const geist = Geist({
   subsets: ["latin"],
