@@ -9,19 +9,23 @@ export type WaitlistDetails = {
 
   backgroundColor?: string;
   templateId?: number;
+
   badge?: string;
   badgeColor?: string;
   badgeSize?: string;
+  badgeFont?:string;
 
   waitlistName?: string;
 
   header?: string;
   headerColor?: string;
   headerSize?: string;
+  headerFont?:string;
 
   subHeader?: string;
   subHeaderColor?:string;
   subHeaderSize?:string;
+  subHeaderFont?:string;
 
   buttonPlaceholder?:string;
   buttonBackground?:string;

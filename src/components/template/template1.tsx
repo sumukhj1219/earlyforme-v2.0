@@ -72,18 +72,18 @@ const Template1 = (props?: Template) => {
         }
         <Badge
           variant="outline"
-          className={`flex items-center ${props?.badgeColor || waitlistDetails?.badgeColor} justify-center gap-x-2 ${props?.badgeSize || waitlistDetails?.badgeSize || 'text-sm'
+          className={`flex ${props?.badgeFont || waitlistDetails?.badgeFont} items-center ${props?.badgeColor || waitlistDetails?.badgeColor} justify-center gap-x-2 ${props?.badgeSize || waitlistDetails?.badgeSize || 'text-sm'
             } px-3 py-1`}
         >
           <span className="w-2 h-2 bg-lime-500 animate-ping rounded-full"></span>
           {(props?.badge || waitlistDetails?.badge) ?? "Available in early 2025"}
         </Badge>
 
-        <h1 className={`${getResponsiveSize(props?.headerSize || waitlistDetails?.headerSize as string) || 'text-4xl'} font-semibold ${props?.headerColor || waitlistDetails?.headerColor || 'text-white'} leading-tight`}>
+        <h1 className={`${getResponsiveSize(props?.headerSize || waitlistDetails?.headerSize as string) || 'text-4xl'} font-semibold ${props?.headerColor || waitlistDetails?.headerColor || 'text-white'} leading-tight ${props?.headerFont || waitlistDetails?.headerFont}`}>
           {(props?.header || waitlistDetails?.header) ?? "Get early access"}
         </h1>
 
-        <h2 className={`${getResponsiveSize(props?.subHeaderSize || waitlistDetails?.subHeaderSize as string) || 'text-sm'} text-neutral-400 max-w-xl mx-auto leading-relaxed`}>
+        <h2 className={`${getResponsiveSize(props?.subHeaderSize || waitlistDetails?.subHeaderSize as string) || 'text-sm'} text-neutral-400 max-w-xl mx-auto leading-relaxed ${props?.subHeaderFont || waitlistDetails?.subHeaderFont}`}>
           {(props?.subHeader || waitlistDetails?.subHeader) ?? (
             <>
               Be amongst the first to experience Wait and launch a viral

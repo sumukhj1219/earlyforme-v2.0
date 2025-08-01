@@ -80,23 +80,29 @@ model Waitlist {
     waitlistUrl     String? @unique
     templateId      Int
     href            String
+
     waitlistLogo    String?
     waitlistIcon    String?
+    iconStroke      String?
 
     backgroundColor String?
+
     badge           String?
     badgeColor      String?
     badgeSize       String?
+    badgeFont       String?
 
     waitlistName String @unique
 
     header      String?
     headerColor String?
     headerSize  String?
+    headerFont  String?
 
     subHeader      String?
     subHeaderColor String?
     subHeaderSize  String?
+    subHeaderFont  String?
 
     buttonPlaceholder String?
     buttonBackground  String?

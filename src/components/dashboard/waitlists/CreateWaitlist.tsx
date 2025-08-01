@@ -24,6 +24,7 @@ import dynamic from "next/dynamic"
 import type { WaitlistDetails } from "~/types/waitlist"
 import ImageLogoSize from "~/components/common/imageLogoSize/ImageLogoSize"
 import StrokeColorChanger from "~/components/common/colorChanger/strokeColorChanger"
+import FontChanger from "~/components/common/fonts/fontChanger"
 
 const Lucide = dynamic(() => import("~/components/packages/lucide-icons/lucide"), { ssr: false })
 
@@ -206,6 +207,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     placeholder="Badge"
                     className="w-full mt-1 shadow-none"
                   />
+                  <FontChanger type="badgeFont" />
                   <ColorAndSizeInput colorKey="badgeColor" sizeKey="badgeSize" />
                 </div>
               </div>
@@ -233,6 +235,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     placeholder="Header"
                     className="w-full mt-1 shadow-none"
                   />
+                  <FontChanger type="headerFont" />
                   <ColorAndSizeInput colorKey="headerColor" sizeKey="headerSize" />
                 </div>
               </div>
@@ -261,6 +264,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                     placeholder="Waitlist name"
                     className="w-full mt-1 shadow-none"
                   />
+                  <FontChanger type="subHeaderFont" />
                   <ColorAndSizeInput colorKey="subHeaderColor" sizeKey="subHeaderSize" />
                 </div>
               </div>

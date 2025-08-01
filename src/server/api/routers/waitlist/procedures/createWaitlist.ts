@@ -8,22 +8,26 @@ const payload = z.object({
     href: z.string(),
     waitlistLogo: z.string().optional(),
     waitlistIcon: z.string().optional(),
+    iconStroke: z.string().optional(),
 
     backgroundColor: z.string().optional(),
 
     badge: z.string().optional(),
     badgeColor: z.string().optional(),
     badgeSize: z.string().optional(),
+    badgeFont: z.string().optional(),
 
     waitlistName: z.string(),
 
     header: z.string().optional(),
     headerColor: z.string().optional(),
     headerSize: z.string().optional(),
+    headerFont: z.string().optional(),
 
     subHeader: z.string().optional(),
     subHeaderColor: z.string().optional(),
     subHeaderSize: z.string().optional(),
+    subHeaderFont: z.string().optional(),
 
     buttonPlaceholder: z.string().optional(),
     buttonBackground: z.string().optional(),
@@ -43,6 +47,7 @@ export const createWaitlist = protectedProcedure
           href: input.href,
           waitlistLogo: input.waitlistLogo,
           waitlistIcon: input.waitlistIcon,
+          iconStroke: input.iconStroke,
 
           backgroundColor: input.backgroundColor,
           templateId: input.templateId,
@@ -50,16 +55,19 @@ export const createWaitlist = protectedProcedure
           badge: input.badge,
           badgeColor: input.badgeColor,
           badgeSize: input.badgeSize,
+          badgeFont: input.badgeFont,
 
           waitlistName: input.waitlistName,
 
           header: input.header,
           headerColor: input.headerColor,
           headerSize: input.headerSize,
+          headerFont: input.headerFont,
 
           subHeader: input.subHeader,
           subHeaderColor: input.subHeaderColor,
           subHeaderSize: input.subHeaderSize,
+          subHeaderFont: input.subHeaderFont,
 
           buttonPlaceholder: input.buttonPlaceholder,
           buttonBackground: input.buttonBackground,
@@ -73,22 +81,26 @@ export const createWaitlist = protectedProcedure
           href: input.href,
           waitlistLogo: input.waitlistLogo,
           waitlistIcon: input.waitlistIcon,
+          iconStroke: input.iconStroke,
 
           backgroundColor: input.backgroundColor,
 
           badge: input.badge,
           badgeColor: input.badgeColor,
           badgeSize: input.badgeSize,
+          badgeFont: input.badgeFont,
 
           waitlistName: input.waitlistName,
 
           header: input.header,
           headerColor: input.headerColor,
           headerSize: input.headerSize,
+          headerFont: input.headerFont,
 
           subHeader: input.subHeader,
           subHeaderColor: input.subHeaderColor,
           subHeaderSize: input.subHeaderSize,
+          subHeaderFont: input.subHeaderFont,
 
           buttonPlaceholder: input.buttonPlaceholder,
           buttonBackground: input.buttonBackground,
