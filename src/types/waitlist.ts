@@ -6,6 +6,7 @@ export type WaitlistDetails = {
   waitlistIcon?: string;
   waitlistLogoIconSize?: string;
   iconStroke?: string;
+  launchDate?: Date;
 
   backgroundColor?: string;
   templateId?: number;

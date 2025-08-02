@@ -50,32 +50,33 @@ const Template2 = (props?: Template) => {
     console.log(values)
   }
 
-  const [targetDate, setTargetDate] = useState<Date | null>(new Date("2025-08-31"))
-  const [timeleft, setTimeLeft] = useState(getTimeRemaining(null))
+  const [timeleft, setTimeLeft] = useState(getTimeRemaining(new Date(waitlistDetails?.launchDate || props?.launchDate || "")))
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(getTimeRemaining(targetDate))
+      setTimeLeft(getTimeRemaining(new Date(waitlistDetails?.launchDate || props?.launchDate || "")))
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [targetDate])
+  }, [waitlistDetails?.launchDate, props?.launchDate])
 
-  function getTimeRemaining(targetDate: Date | null) {
-    if (!targetDate) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  function getTimeRemaining(target: Date | null) {
+    if (!target || isNaN(target.getTime())) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
 
     const now = new Date()
-    const total = targetDate.getTime() - now.getTime()
+    const diff = target.getTime() - now.getTime()
 
-    if (total <= 0)
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
 
-    const seconds = Math.floor((total / 1000) % 60)
-    const minutes = Math.floor((total / 1000 / 60) % 60)
-    const hours = Math.floor((total / (1000 * 60 * 60)) % 24)
-    const days = Math.floor(total / (1000 * 60 * 60 * 24))
-    return { days, hours, minutes, seconds }
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((diff / (1000 * 60)) % 60),
+      seconds: Math.floor((diff / 1000) % 60),
+    }
   }
+
+
   const iconName = waitlistDetails?.waitlistIcon || props?.waitlistIcon
   const LucideIcon = Icons[iconName as keyof typeof Icons];
 
@@ -162,24 +163,22 @@ const Template2 = (props?: Template) => {
       </div>
 
       <div className="flex flex-wrap items-center mt-8 justify-center gap-x-1 sm:gap-x-2 md:gap-x-3">
-        {targetDate && (
-          <div className="flex items-center gap-x-2">
-            {[
-              { label: "DAYS", value: timeleft.days },
-              { label: "HOURS", value: timeleft.hours },
-              { label: "MINUTES", value: timeleft.minutes },
-              { label: "SECONDS", value: timeleft.seconds },
-            ].map((item, i) => (
-              <React.Fragment key={i}>
-                <div className="flex flex-col items-center bg-neutral-900 p-3 rounded-xl w-16">
-                  <span className="text-xl">{item.value.toString().padStart(2, "0")}</span>
-                  <span className="text-xs">{item.label}</span>
-                </div>
-                {i < 3 && <span className="text-xl">:</span>}
-              </React.Fragment>
-            ))}
-          </div>
-        )}
+        <div className="flex items-center gap-x-2">
+          {[
+            { label: "DAYS", value: timeleft.days },
+            { label: "HOURS", value: timeleft.hours },
+            { label: "MINUTES", value: timeleft.minutes },
+            { label: "SECONDS", value: timeleft.seconds },
+          ].map((item, i) => (
+            <React.Fragment key={i}>
+              <div className="flex flex-col items-center bg-neutral-900 p-3 rounded-xl w-16">
+                <span className="text-xl">{item.value.toString().padStart(2, "0")}</span>
+                <span className="text-xs">{item.label}</span>
+              </div>
+              {i < 3 && <span className="text-xl">:</span>}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </div>
 

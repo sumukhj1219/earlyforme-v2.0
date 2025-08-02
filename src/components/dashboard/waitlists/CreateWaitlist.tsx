@@ -25,6 +25,7 @@ import type { WaitlistDetails } from "~/types/waitlist"
 import ImageLogoSize from "~/components/common/imageLogoSize/ImageLogoSize"
 import StrokeColorChanger from "~/components/common/colorChanger/strokeColorChanger"
 import FontChanger from "~/components/common/fonts/fontChanger"
+import { LaunchDate } from "~/utils/launchDate"
 
 const Lucide = dynamic(() => import("~/components/packages/lucide-icons/lucide"), { ssr: false })
 
@@ -274,7 +275,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
 
         <AccordionItem value="item-3">
           <AccordionTrigger className="md:text-md font-medium tracking-wide bg-background">
-            <span className="px-4">Update Inputs and media</span>
+            <span className="px-4">Button, Media and Launch dates</span>
           </AccordionTrigger>
 
           <AccordionContent
@@ -311,32 +312,42 @@ const CreateWaitlist = ({ viewMode }: Props) => {
                 </div>
               </div>
 
-              <div>
-                <Label htmlFor="video" className="text-xs font-medium">
-                  Video url
-                </Label>
-                <div className="flex items-center justify-center gap-x-1">
-                  <Input
-                    id="video"
-                    type="text"
-                    value={waitlistDetails?.video || template?.video || ""}
-                    onChange={(e) => {
-                      setWaitlistDetails((prev) => ({
-                        ...prev as WaitlistDetails,
-                        video: e.target.value,
-                      }));
-                      setTemplate((prev) => ({
-                        ...(prev as Template),
-                        video: e.target.value
-                      }))
-                    }
-                    }
-                    placeholder="Paste your video url here"
-                    className="w-full mt-1 shadow-none"
-                  />
-                  {/* <ColorChanger preset={tailwindBgColors} type="buttonBackground" /> */}
+              <div className="grid grid-cols-2 gap-x-4 items-end mt-5 w-full">
+                <div className="w-full">
+                  <Label htmlFor="video" className="text-xs font-medium">
+                    Video URL
+                  </Label>
+                  <div className="flex items-center gap-x-1 mt-1">
+                    <Input
+                      id="video"
+                      type="text"
+                      value={waitlistDetails?.video || template?.video || ""}
+                      onChange={(e) => {
+                        setWaitlistDetails((prev) => ({
+                          ...prev as WaitlistDetails,
+                          video: e.target.value,
+                        }))
+                        setTemplate((prev) => ({
+                          ...(prev as Template),
+                          video: e.target.value,
+                        }))
+                      }}
+                      placeholder="Paste your video URL here"
+                      className="w-full shadow-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="w-full">
+                  <Label htmlFor="launchDate" className="text-xs font-medium">
+                    Launch Date
+                  </Label>
+                  <div className="mt-1">
+                    <LaunchDate props={waitlistDetails as WaitlistDetails} />
+                  </div>
                 </div>
               </div>
+
             </div>
           </AccordionContent>
         </AccordionItem>
