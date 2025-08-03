@@ -85,6 +85,8 @@ model Waitlist {
     waitlistIcon    String?
     iconStroke      String?
 
+    launchDate      String?
+
     backgroundColor String?
 
     badge           String?

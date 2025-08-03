@@ -58,7 +58,8 @@ const Publish = () => {
       templateId: template.templateId as number,
       waitlistLogo: template.waitlistLogo as string,
       waitlistName: waitlistName!,
-      waitlistIcon: template.waitlistIcon
+      waitlistIcon: template.waitlistIcon,
+      launchDate: template.launchDate?.toDateString(),
     });
   }
 

@@ -10,7 +10,7 @@ import {
 } from "~/components/ui/card";
 import { instrument_serif } from "../fonts/fonts";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export function SidebarOptInForm() {
     const { data: session, status } = useSession();
@@ -46,5 +46,21 @@ export function SidebarOptInForm() {
         );
     }
 
-    return null; // If user is authenticated, render nothing
+    return (
+        <div className="flex flex-col gap-y-2">
+            <div className="w-full p-2 bg-background flex items-center rounded-lg justify-center gap-x-5">
+                <span className="rounded-full p-4 bg-gradient-to-br from-sky-400 to-fuchsia-400 via-sky-600"></span>
+                <div className="flex flex-col items-start justify-center">
+                    <span className="text-sm">{session?.user.name}</span>
+                    <span className="text-xs">{session?.user.email}</span>
+                </div>
+            </div>
+            <div className="flex items-center justify-center">
+                <Button variant={'destructive'} className="w-full" onClick={()=>signOut()}>
+                    Logout
+                </Button>
+            </div>
+        </div>
+
+    )
 }

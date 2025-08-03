@@ -9,7 +9,7 @@ const payload = z.object({
     waitlistLogo: z.string().optional(),
     waitlistIcon: z.string().optional(),
     iconStroke: z.string().optional(),
-
+    launchDate: z.string().optional(),
     backgroundColor: z.string().optional(),
 
     badge: z.string().optional(),
@@ -48,7 +48,7 @@ export const createWaitlist = protectedProcedure
           waitlistLogo: input.waitlistLogo,
           waitlistIcon: input.waitlistIcon,
           iconStroke: input.iconStroke,
-
+          launchDate: input.launchDate,
           backgroundColor: input.backgroundColor,
           templateId: input.templateId,
 
@@ -82,7 +82,7 @@ export const createWaitlist = protectedProcedure
           waitlistLogo: input.waitlistLogo,
           waitlistIcon: input.waitlistIcon,
           iconStroke: input.iconStroke,
-
+          launchDate:input.launchDate,
           backgroundColor: input.backgroundColor,
 
           badge: input.badge,
