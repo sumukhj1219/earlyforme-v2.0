@@ -1,6 +1,6 @@
-import { generateMetadata } from './metadata'
+// import { generateMetadata } from './metadata'
 
-export { generateMetadata }
+// export { generateMetadata }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
