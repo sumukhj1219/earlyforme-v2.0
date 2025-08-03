@@ -8,6 +8,7 @@ import { ThemeSwitchProvider } from "~/components/common/providers/theme-provide
 import { WaitlistContextProvider } from "~/contexts/WaitlistContext";
 import { Toaster } from "sonner";
 import { generateMetadata } from "~/components/common/meta/meta";
+import Head from "next/head";
 
 
 export const metadata = generateMetadata("/")
@@ -16,6 +17,11 @@ const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
 });
+<Head>
+  <meta property="og:image" content="https://earlyfor.me/meta/main.png" />
+  <meta name="twitter:image" content="https://earlyfor.me/meta/main.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+</Head>
 
 export default function RootLayout({
   children,
