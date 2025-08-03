@@ -7,11 +7,11 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeSwitchProvider } from "~/components/common/providers/theme-provider";
 import { WaitlistContextProvider } from "~/contexts/WaitlistContext";
 import { Toaster } from "sonner";
-// import { generateMetadata } from "~/components/common/meta/meta";
+import { generateMetadata } from "~/components/common/meta/meta";
 import Head from "next/head";
 
 
-// export const metadata = generateMetadata("/")
+export const metadata = generateMetadata("/")
 
 const geist = Geist({
   subsets: ["latin"],
