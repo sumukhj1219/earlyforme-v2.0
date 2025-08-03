@@ -49,7 +49,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'typescript',
       'webdevelopment',
     ],
-    ogImage: '/meta/logo.png',
+    ogImage: '/meta/main.png?v1=meta',
     twitterCard: 'summary_large_image'
   },
 
