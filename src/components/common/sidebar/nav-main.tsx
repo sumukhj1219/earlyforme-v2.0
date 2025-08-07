@@ -32,7 +32,7 @@ export function NavMain({
           <div key={item.title}>
             <SidebarMenuItem>
               <a href={item.url} className="w-full">
-                <SidebarMenuButton className="w-full text-xs font-semibold text-secondary/30">
+                <SidebarMenuButton className="w-full text-xs font-semibold text-foreground">
                   {item.title}
                 </SidebarMenuButton>
               </a>

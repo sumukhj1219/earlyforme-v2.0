@@ -26,6 +26,7 @@ import ImageLogoSize from "~/components/common/imageLogoSize/ImageLogoSize"
 import StrokeColorChanger from "~/components/common/colorChanger/strokeColorChanger"
 import FontChanger from "~/components/common/fonts/fontChanger"
 import { LaunchDate } from "~/utils/launchDate"
+import { motion } from "motion/react"
 
 const Lucide = dynamic(() => import("~/components/packages/lucide-icons/lucide"), { ssr: false })
 
@@ -44,7 +45,19 @@ const CreateWaitlist = ({ viewMode }: Props) => {
   const isGrid = viewMode === "Form"
 
   return (
-    <div
+    <motion.div
+      initial={{
+        opacity:0,
+        scale:0,
+      }}
+      animate={{
+        opacity:1,
+        scale:1,
+      }}
+      transition={{
+        duration:0.2,
+        ease:"anticipate"
+      }}
       className={`${isGrid ? "w-full" : "w-full max-w-screen-xl mx-auto"
         } bg-background `}
     >
@@ -352,7 +365,7 @@ const CreateWaitlist = ({ viewMode }: Props) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </div>
+    </motion.div>
   )
 }
 

@@ -55,16 +55,17 @@ model Session {
 }
 
 model User {
-    id            String     @id @default(cuid())
-    name          String?
-    email         String?    @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
-    Waitlists     Waitlist[]
-    Assets        Assets[]
+    id             String     @id @default(cuid())
+    name           String?
+    email          String?    @unique
+    hashedPassword String?
+    emailVerified  DateTime?
+    image          String?
+    accounts       Account[]
+    sessions       Session[]
+    posts          Post[]
+    Waitlists      Waitlist[]
+    Assets         Assets[]
 }
 
 model VerificationToken {
@@ -76,23 +77,23 @@ model VerificationToken {
 }
 
 model Waitlist {
-    id              String  @id @default(uuid())
-    waitlistUrl     String? @unique
-    templateId      Int
-    href            String
+    id          String  @id @default(uuid())
+    waitlistUrl String? @unique
+    templateId  Int
+    href        String
 
-    waitlistLogo    String?
-    waitlistIcon    String?
-    iconStroke      String?
+    waitlistLogo String?
+    waitlistIcon String?
+    iconStroke   String?
 
-    launchDate      String?
+    launchDate String?
 
     backgroundColor String?
 
-    badge           String?
-    badgeColor      String?
-    badgeSize       String?
-    badgeFont       String?
+    badge      String?
+    badgeColor String?
+    badgeSize  String?
+    badgeFont  String?
 
     waitlistName String @unique
 
