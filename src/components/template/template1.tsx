@@ -65,10 +65,15 @@ const Template1 = (props?: Template) => {
         } min-h-screen flex items-center justify-center px-4 py-10`}
     >
       <div className="w-full max-w-6xl flex flex-col gap-y-6 items-center justify-center text-center">
-        {(props?.waitlistLogo || waitlistDetails?.waitlistLogo) && <img className="p-1 w-10 h-10 md:w-32 md:h-32 lg:w-52 lg:h-52  rounded" src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""} />}
+        {(props?.waitlistLogo || waitlistDetails?.waitlistLogo) && <img
+          className="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover"
+          src={props?.waitlistLogo || waitlistDetails?.waitlistLogo || ""}
+          alt="Waitlist Logo"
+        />
+        }
 
         {
-        (props?.waitlistIcon || waitlistDetails?.waitlistIcon) && <LucideIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-12"} p-1.5 bg-muted rounded`} />
+          (props?.waitlistIcon || waitlistDetails?.waitlistIcon) && <LucideIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-12"} p-1.5 bg-muted rounded`} />
         }
         <Badge
           variant="outline"
@@ -117,7 +122,7 @@ const Template1 = (props?: Template) => {
 
         <span className="text-neutral-500 text-sm">+12,000 users already on the waitlist</span>
 
-        <div className="bg-neutral-900 max-w-3xl rounded-xl h-[200px] sm:h-[300px] md:h-[400px] mt-6 p-2 overflow-hidden">
+        <div className="bg-neutral-900 max-w-3xl w-full rounded-xl h-[200px] sm:h-[300px] md:h-[400px] mt-6 p-2 overflow-hidden">
           <video
             className="w-full h-full object-cover rounded-lg"
             controls

@@ -1,11 +1,25 @@
 "use client"
+
+import type { Template } from "~/types/template";
+import type { WaitlistDetails } from "~/types/waitlist";
+
 export const uploadImage = async (
   e: React.ChangeEvent<HTMLInputElement>,
   setWaitlistDetails: (waitlists: any) => void,
-  setTemplate: (waitlists:any)=>void
+  setTemplate: (waitlists: any) => void
 ) => {
   const file = e.target.files?.[0];
   if (!file) return;
+
+  setWaitlistDetails((prev:WaitlistDetails) => ({
+    ...prev as WaitlistDetails,
+    waitlistLogo: URL.createObjectURL(file),
+  }));
+
+  setTemplate((prev:Template) => ({
+    ...prev as Template,
+    waitlistLogo: URL.createObjectURL(file),
+  }));
 
   const getUrlRes = await fetch("/api/upload", {
     method: "POST",

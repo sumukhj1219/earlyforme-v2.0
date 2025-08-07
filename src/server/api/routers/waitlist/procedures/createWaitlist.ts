@@ -39,6 +39,7 @@ export const createWaitlist = protectedProcedure
   .input(payload)
   .mutation(async ({ ctx, input }) => {
     try {
+      if(input.waitlistLogo){}
       const waitlist = await ctx.db.waitlist.upsert({
         where: {
           waitlistName: input.waitlistName

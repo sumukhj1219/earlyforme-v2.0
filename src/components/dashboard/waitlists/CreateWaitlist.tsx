@@ -46,20 +46,6 @@ const CreateWaitlist = ({ viewMode }: Props) => {
 
   return (
     <motion.div
-      initial={{
-        opacity:0,
-        scale:0,
-      }}
-      animate={{
-        opacity:1,
-        scale:1,
-      }}
-      transition={{
-        duration:0.2,
-        ease:"anticipate"
-      }}
-      className={`${isGrid ? "w-full" : "w-full max-w-screen-xl mx-auto"
-        } bg-background `}
     >
       <Accordion type="single" collapsible defaultValue="item-1">
         <AccordionItem value="item-1">
