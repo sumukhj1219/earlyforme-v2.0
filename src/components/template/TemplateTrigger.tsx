@@ -12,7 +12,6 @@ import {
 import { Button } from "../ui/button"
 import { Layers } from "lucide-react"
 import { templates } from "~/config/template/templates"
-import Image from "next/image"
 import { useWaitlist } from "~/contexts/WaitlistContext"
 
 const TemplateTrigger = () => {
@@ -37,28 +36,27 @@ const TemplateTrigger = () => {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Choose any template</DialogTitle>
-            <DialogDescription className="">
+            <DialogDescription>
               Select a template from the list below.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="grid md:grid-cols-4 grid-cols-3 gap-x-2 items-center">
+          <div className="grid md:grid-cols-3 grid-cols-2 gap-4 mt-4">
             {templates.map((t) => (
               <div
                 key={t.templateId}
                 onClick={() => setTemplate(() => t)}
-                className={`mt-5 rounded-md overflow-hidden border-2 transition cursor-pointer ${template?.templateId === t.templateId
-                  ? "border-primary"
-                  : "border-transparent hover:border-neutral-700"
-                  }`}
+                className={`rounded-md overflow-hidden border-2 transition cursor-pointer ${
+                  template?.templateId === t.templateId
+                    ? "border-primary"
+                    : "border-border hover:border-neutral-700"
+                }`}
               >
-                <div className="w-28 h-28 relative shadow-md hover:shadow-lg rounded-md overflow-hidden transition-all duration-300 hover:brightness-105 hover:scale-105">
-                  <Image
+                <div className="w-full aspect-square bg-muted">
+                  <img
                     src={t.href as string}
                     alt={`Template ${t.templateId}`}
-                    fill
-                    className="rounded-md object-cover"
-                    priority
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>

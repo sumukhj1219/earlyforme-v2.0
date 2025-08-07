@@ -14,6 +14,9 @@ import {
 } from "~/components/ui/dialog";
 import { api } from "~/trpc/react";
 import type { Template } from "~/types/template";
+import Unauthenticated from "../messages/unauthenticated";
+import ChooseTemplate from "../messages/chooseTemplate";
+import AddWaitlistName from "../messages/addWaitlistName";
 
 const Publish = () => {
   const { data: session, status } = useSession();
@@ -45,12 +48,13 @@ const Publish = () => {
   async function handlePublish() {
     if (!session?.user?.email || status === "unauthenticated") {
       setShowDialog(true);
-      return;
+      return 
     }
 
     if (!template || !template.templateId) {
       setShowDialog(true);
-      return;
+      return
+
     }
 
     createWaitlist.mutate({
@@ -74,19 +78,16 @@ const Publish = () => {
         {createWaitlist.isPending ? "Publishing..." : "Publish"}{" "}
         <GlobeIcon className="w-3 h-3" stroke="white" />
       </Button>
-
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Something went wrong</DialogTitle>
-            <DialogDescription>
-              {status === "unauthenticated"
-                ? "Please log in to publish your waitlist."
-                : "Please select a valid template or the name already exists."}
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      {
+        status === "unauthenticated" && <Unauthenticated showDialog={showDialog} setShowDialog={setShowDialog} />
+        
+      }
+      {
+        !template?.templateId && <ChooseTemplate showDialog={showDialog} setShowDialog={setShowDialog} /> 
+      }
+      {
+        !template?.waitlistName && <AddWaitlistName showDialog={showDialog} setShowDialog={setShowDialog} /> 
+      }
     </div>
   );
 };

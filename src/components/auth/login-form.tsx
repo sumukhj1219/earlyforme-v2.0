@@ -41,10 +41,7 @@ export function LoginForm({
                 callbackUrl: "/",
               })
 
-              // Optionally show error if signIn fails
-              if (!res?.ok) {
-                alert("Login failed. Please check your credentials.")
-              }
+             
             }}
           >
             <div className="grid gap-6">

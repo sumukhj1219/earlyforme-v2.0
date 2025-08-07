@@ -32,7 +32,7 @@ export const authConfig = {
         }
 
         const user = await db.user.findUnique({
-          where: { email: credentials.email },
+          where: { email: credentials.email as string },
         });
 
         if (!user) {
@@ -40,7 +40,7 @@ export const authConfig = {
           return null;
         }
 
-        const isValid = await bcrypt.compare(credentials.password, user.hashedPassword);
+        const isValid = await bcrypt.compare(credentials.password as string, user.hashedPassword as string);
         if (!isValid) {
           console.log("Invalid password");
           return null;
@@ -48,7 +48,6 @@ export const authConfig = {
 
         console.log("Auth success", user);
 
-        // ✅ return only safe fields
         return {
           id: user.id,
           name: user.name,
@@ -68,8 +67,8 @@ export const authConfig = {
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.email = token.email;
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
         session.user.name = token.name;
       }
       return session;

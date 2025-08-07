@@ -39,11 +39,6 @@ export function SignupForm({
                                 body: JSON.stringify({ email, password }),
                             });
 
-                            if (!signupRes.ok) {
-                                const { error } = await signupRes.json();
-                                alert(error);
-                                return;
-                            }
 
                             const loginRes = await signIn("credentials", {
                                 email,
