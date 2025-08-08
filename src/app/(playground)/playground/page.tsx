@@ -1,10 +1,10 @@
 import React from 'react'
-import Template2 from '~/components/template/template2'
+import Template3 from '~/components/template/template3'
 
 const page = () => {
   return (
     <div>
-      <Template2 />
+      <Template3 />
     </div>
   )
 }

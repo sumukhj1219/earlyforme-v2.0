@@ -95,11 +95,26 @@ const Template2 = (props?: Template) => {
         </svg>
 
         <span className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-t border-neutral-600 rounded-full">
-          {
-            (props?.waitlistIcon || waitlistDetails?.waitlistIcon) ? (<LucideIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className={`${waitlistDetails?.waitlistLogoIconSize || props?.waitlistLogoIconSize || "size-14"} p-3 `} />) : (
-              <BookmarkXIcon stroke={waitlistDetails?.iconStroke || props?.iconStroke} className="size-14 p-3" />
-            )
-          }
+          {props?.waitlistLogo || waitlistDetails?.waitlistLogo ? (
+            <img
+              className="w-16 h-16 rounded-full"
+              src={props?.waitlistLogo || waitlistDetails?.waitlistLogo}
+              alt="Waitlist Logo"
+            />
+          ) : props?.waitlistIcon || waitlistDetails?.waitlistIcon ? (
+            <LucideIcon
+              stroke={waitlistDetails?.iconStroke || props?.iconStroke}
+              className={`${waitlistDetails?.waitlistLogoIconSize ||
+                props?.waitlistLogoIconSize ||
+                "size-14"
+                } p-3`}
+            />
+          ) : (
+            <BookmarkXIcon
+              stroke={waitlistDetails?.iconStroke || props?.iconStroke}
+              className="size-14 p-3"
+            />
+          )}
         </span>
 
         <svg viewBox="0 0 200 20" className="w-[30vw] sm:w-[150px] h-5 flex-shrink-0">
@@ -115,10 +130,11 @@ const Template2 = (props?: Template) => {
       </div>
 
       <div className="flex flex-col items-center justify-center gap-y-2 text-center">
-        <h1 className={`${getResponsiveSize(props?.headerSize || waitlistDetails?.headerSize as string) || 'text-4xl'} text-3xl sm:text-5xl md:text-6xl mt-5 p-1.5 ${props?.headerColor || waitlistDetails?.headerColor || "bg-gradient-to-r from-neutral-200 to-neutral-300 via-neutral-500 bg-clip-text"}  font-extrabold text-transparent tracking-wide ${instrument_serif.className}`}>
+        <h1 className={`${getResponsiveSize(props?.headerSize || waitlistDetails?.headerSize as string) || 'text-4xl'}  mt-5 p-1.5 ${props?.headerColor || waitlistDetails?.headerColor || "bg-gradient-to-r from-neutral-200 to-neutral-300 via-neutral-500 bg-clip-text"}  font-extrabold text-transparent tracking-wide ${props?.headerFont || waitlistDetails?.headerFont || instrument_serif.className}`}>
           {props?.header || waitlistDetails?.header || "Get early access"}
         </h1>
-        <h2 className={`text-xs ${getResponsiveSize(props?.headerSize || waitlistDetails?.headerSize as string) || 'text-4xl'} sm:text-sm md:text-base text-center max-w-lg ${jetbrains_mono.className} ${props?.subHeaderColor || waitlistDetails?.subHeaderColor || "text-white"}`}>
+        
+        <h2 className={`text-xs ${getResponsiveSize(props?.subHeaderSize || waitlistDetails?.subHeaderSize as string) || 'text-xs'} text-center max-w-lg ${props?.subHeaderFont || waitlistDetails?.subHeaderFont || jetbrains_mono.className} ${props?.subHeaderColor || waitlistDetails?.subHeaderColor || "text-white"}`}>
           {
             props?.subHeader || waitlistDetails?.subHeader || " We're getting close.Signup to get early access.And start building your viral waitlist."
           }
